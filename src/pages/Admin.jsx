@@ -98,12 +98,18 @@ export default function Admin() {
           grid-template-columns: 240px 1fr;
           min-height: calc(100vh - 80px);
         }
-        /* ===== Sidebar CLARO (paleta Atardecer abrazo) ===== */
+        /* ===== Sidebar — paleta Atardecer con contraste vs contenido ===== */
         .admin-side {
-          background: linear-gradient(180deg, #FFFAF5 0%, #FFF0E8 100%);
+          /* Lavanda + peach SATURADO para que destaque vs el marfil del contenido */
+          background:
+            linear-gradient(180deg,
+              rgba(239, 235, 247, 1) 0%,
+              rgba(255, 234, 241, 1) 60%,
+              rgba(255, 232, 221, 1) 100%);
           color: var(--c-azul-800);
           padding: 24px 18px;
-          border-right: 1px solid var(--c-borde-soft);
+          border-right: 2px solid rgba(157, 123, 217, 0.20);
+          box-shadow: 4px 0 18px rgba(108, 80, 124, 0.06);
           position: relative;
         }
         /* Halo lavanda detrás del logo para no perderse */
@@ -111,10 +117,10 @@ export default function Admin() {
           content: '';
           position: absolute;
           top: 0; left: 0; right: 0;
-          height: 180px;
+          height: 200px;
           background:
-            radial-gradient(circle at 50% 30%, rgba(157,123,217,0.18), transparent 70%),
-            radial-gradient(circle at 50% 90%, rgba(255,184,156,0.10), transparent 60%);
+            radial-gradient(circle at 50% 30%, rgba(157,123,217,0.28), transparent 70%),
+            radial-gradient(circle at 50% 90%, rgba(255,184,156,0.18), transparent 60%);
           pointer-events: none;
         }
         .admin-side > * { position: relative; z-index: 1; }

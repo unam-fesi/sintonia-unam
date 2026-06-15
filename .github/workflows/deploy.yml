@@ -1,0 +1,51 @@
+name: Deploy AURA to GitHub Pages
+
+# Se dispara en cada push a main (y también lo puedes correr manual)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permisos necesarios para que el action pueda escribir en gh-pages
+permissions:
+  contents: write
+
+# Evita que dos pushes consecutivos corran en paralelo y se pisen
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar con Vite
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Publicar a rama gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          # Evita borrar archivos que NO vienen del build (ej. CNAME custom domain)
+          keep_files: false
+          # Commit message del action
+          commit_message: "deploy: ${{ github.event.head_commit.message }}"
+          user_name: "AURA deploy bot"
+          user_email: "actions@github.com"

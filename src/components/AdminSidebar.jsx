@@ -238,14 +238,20 @@ export default function AdminSidebar({ ctx }) {
         .admin-side-v2 .admin-nav {
           display: flex;
           flex-direction: column;
-          gap: 6px;
+          gap: 2px;            /* Antes 6px — más compacto */
           margin-top: 10px;
           padding-bottom: 12px;
           overflow-y: auto;
         }
 
         /* ===== Grupos (tema CLARO Atardecer) ===== */
-        .nav-group { display: flex; flex-direction: column; }
+        .nav-group {
+          display: flex;
+          flex-direction: column;
+          /* Cuando colapsado, el group entero NO debe contribuir altura extra */
+        }
+        .nav-group.open { margin-bottom: 4px; }
+        .nav-group:not(.open) { margin-bottom: 0; }
         .nav-group-flat { gap: 2px; }
         .nav-group-flat > a {
           display: flex; align-items: center; gap: 10px;
@@ -264,22 +270,27 @@ export default function AdminSidebar({ ctx }) {
         /* ===== Header del grupo colapsable ===== */
         .nav-group-head {
           display: flex; align-items: center; gap: 10px;
-          padding: 8px 12px;
+          padding: 9px 12px;
           background: transparent;
           border: 0;
-          color: var(--c-gris);
-          font-size: 0.74rem;
+          color: var(--c-texto-soft);
+          font-size: 0.78rem;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.06em;
           cursor: pointer;
           border-radius: 8px;
           transition: color 0.15s ease, background 0.15s ease;
           text-align: left;
+          width: 100%;
         }
         .nav-group-head:hover {
           color: var(--c-azul-800);
-          background: rgba(157,123,217,0.06);
+          background: rgba(157,123,217,0.10);
+        }
+        .nav-group.open .nav-group-head {
+          color: var(--c-azul-800);
+          background: rgba(157,123,217,0.08);
         }
         .nav-group-label { flex: 1; }
         .nav-group-chev {
@@ -294,15 +305,27 @@ export default function AdminSidebar({ ctx }) {
         .nav-group-items {
           display: grid;
           grid-template-rows: 1fr;
-          transition: grid-template-rows 0.3s cubic-bezier(.2,.7,.2,1), opacity 0.25s ease;
+          transition: grid-template-rows 0.3s cubic-bezier(.2,.7,.2,1),
+                      opacity 0.25s ease,
+                      padding 0.3s ease,
+                      margin 0.3s ease,
+                      border-color 0.3s ease;
           padding-left: 12px;
-          border-left: 1px solid var(--c-borde-soft);
+          border-left: 1.5px solid rgba(157,123,217,0.30);
           margin-left: 14px;
+          margin-top: 2px;
+          overflow: hidden;
         }
+        /* CRÍTICO: cuando colapsado, eliminamos todo padding/margin/border
+           para que no quede un hueco vacío entre grupos */
         .nav-group:not(.open) .nav-group-items {
           grid-template-rows: 0fr;
           opacity: 0;
           pointer-events: none;
+          padding: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+          border-left-color: transparent;
         }
         .nav-group-items > * { min-height: 0; overflow: hidden; }
         .nav-group-items > a {
