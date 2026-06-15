@@ -4,6 +4,11 @@ import InfoCard from '../components/InfoCard.jsx';
 import SafetyNotice from '../components/SafetyNotice.jsx';
 import { DailyQuote, DailyChallenge } from '../components/DailyContent.jsx';
 import ScrollReveal, { RevealStagger } from '../components/ScrollReveal.jsx';
+import TiltCard from '../components/TiltCard.jsx';
+import SplitText from '../components/SplitText.jsx';
+import ShimmerText from '../components/ShimmerText.jsx';
+import Marquee from '../components/Marquee.jsx';
+import MagneticButton from '../components/MagneticButton.jsx';
 
 const PILLARS = [
   { icon: '📝', accent: 'azul',    title: 'Evaluación breve',
@@ -44,17 +49,23 @@ export default function Home() {
             <div className="text-center" style={{maxWidth: 640, margin: '0 auto'}}>
               <span className="tag lavanda">Áreas que acompañamos</span>
               <h2 className="mt-2" style={{fontSize:'clamp(1.3rem, 2vw, 1.8rem)'}}>
-                Lo que cuida AURA
+                <SplitText splitBy="word" stagger={0.07}>Lo que cuida</SplitText>{' '}
+                <ShimmerText variant="aurora" speed={5}>AURA</ShimmerText>
               </h2>
             </div>
           </ScrollReveal>
           <div className="areas-grid">
             {AREAS.map((a, i) => (
               <ScrollReveal key={a.label} variant="slideUp" delay={0.06 * i}>
-                <div className={`area-chip area-${a.tone}`}>
+                <TiltCard
+                  className={`area-chip area-${a.tone}`}
+                  max={18}
+                  scale={1.05}
+                  glowColor="rgba(157,123,217,0.35)"
+                >
                   <span className="area-icon" aria-hidden="true">{a.icon}</span>
                   <span className="area-label">{a.label}</span>
-                </div>
+                </TiltCard>
               </ScrollReveal>
             ))}
           </div>
@@ -105,11 +116,24 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== Marquee inspiracional ===== */}
+      <section className="section-sm" style={{padding:'8px 0 24px'}}>
+        <Marquee speed={36}>
+          <span style={{fontFamily:'var(--ff-serif)', fontSize:'1.2rem', color:'var(--c-lavanda-700)'}}>✦ Respira</span>
+          <span style={{fontFamily:'var(--ff-serif)', fontSize:'1.2rem', color:'var(--c-peach-700)'}}>✦ Cuida tu cuerpo</span>
+          <span style={{fontFamily:'var(--ff-serif)', fontSize:'1.2rem', color:'var(--c-mint-700)'}}>✦ Habla con alguien</span>
+          <span style={{fontFamily:'var(--ff-serif)', fontSize:'1.2rem', color:'var(--c-coral-700)'}}>✦ No estás solo</span>
+          <span style={{fontFamily:'var(--ff-serif)', fontSize:'1.2rem', color:'var(--c-durazno-700)'}}>✦ Una pausa es válida</span>
+          <span style={{fontFamily:'var(--ff-serif)', fontSize:'1.2rem', color:'var(--c-rosa-700)'}}>✦ Pide ayuda cuando la necesites</span>
+          <span style={{fontFamily:'var(--ff-serif)', fontSize:'1.2rem', color:'var(--c-azul-800)'}}>✦ Tu bienestar importa</span>
+        </Marquee>
+      </section>
+
       <section className="section-sm">
         <div className="container" style={{maxWidth: 980}}>
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:14}}>
-            <DailyQuote />
-            <DailyChallenge />
+            <TiltCard max={8} scale={1.02} glow={false}><DailyQuote /></TiltCard>
+            <TiltCard max={8} scale={1.02} glow={false}><DailyChallenge /></TiltCard>
           </div>
           <style>{`
             @media (max-width: 720px) {
@@ -124,7 +148,11 @@ export default function Home() {
           <ScrollReveal variant="slideUp">
             <div className="text-center" style={{maxWidth: 720, margin: '0 auto'}}>
               <span className="tag">Cómo te acompaña AURA</span>
-              <h2 className="mt-2">Una orientación clara, anónima y con sentido comunitario</h2>
+              <h2 className="mt-2">
+                <SplitText splitBy="word" stagger={0.05}>Una orientación clara,</SplitText>{' '}
+                <ShimmerText variant="sunset" speed={6}>anónima</ShimmerText>{' '}
+                <SplitText splitBy="word" stagger={0.05} delay={0.3}>y con sentido comunitario</SplitText>
+              </h2>
               <p className="lede">
                 AURA es una plataforma para reflexionar sobre tu bienestar emocional,
                 identificar áreas de autocuidado y conocer recursos de apoyo dentro de la UNAM.
@@ -135,9 +163,11 @@ export default function Home() {
           <div className="pillars">
             {PILLARS.map((p, i) => (
               <ScrollReveal key={p.title} variant="slideUp" delay={0.12 * i}>
-                <InfoCard icon={p.icon} title={p.title} accent={p.accent}>
-                  {p.text}
-                </InfoCard>
+                <TiltCard max={10} scale={1.025} glowColor="rgba(255,184,156,0.35)">
+                  <InfoCard icon={p.icon} title={p.title} accent={p.accent}>
+                    {p.text}
+                  </InfoCard>
+                </TiltCard>
               </ScrollReveal>
             ))}
           </div>

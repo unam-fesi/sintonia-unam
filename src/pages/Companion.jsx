@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../config/supabaseClient.js';
 import { useStudent } from '../hooks/useStudent.js';
 import ScrollReveal from '../components/ScrollReveal.jsx';
+import TypewriterText from '../components/TypewriterText.jsx';
 
 const SUGGESTIONS = [
   'Me ha costado dormir últimamente',
@@ -89,17 +90,26 @@ export default function Companion() {
         <ScrollReveal variant="zoomIn" delay={0.1}>
         <div className="chat-card">
           <div className="chat-stream">
-            {messages.map((m, i) => (
-              <article key={i} className={`bubble ${m.role}`}>
-                <div className="content">{m.content}</div>
-                {m.crisis && (
-                  <div className="crisis-actions">
-                    <a href="tel:8002900024" className="btn btn-coral btn-sm">📞 Llamar 800 290 0024</a>
-                    <Link to="/apoyo" className="btn btn-ghost btn-sm">Ver opciones</Link>
+            {messages.map((m, i) => {
+              // La última bubble del assistant entra con typewriter
+              const isLast = i === messages.length - 1;
+              const useTypewriter = isLast && m.role === 'assistant' && i > 0; // no en welcome
+              return (
+                <article key={i} className={`bubble ${m.role}`} style={{animationDelay: `${i * 0.04}s`}}>
+                  <div className="content">
+                    {useTypewriter
+                      ? <TypewriterText speed={22}>{m.content}</TypewriterText>
+                      : m.content}
                   </div>
-                )}
-              </article>
-            ))}
+                  {m.crisis && (
+                    <div className="crisis-actions">
+                      <a href="tel:8002900024" className="btn btn-coral btn-sm">📞 Llamar 800 290 0024</a>
+                      <Link to="/apoyo" className="btn btn-ghost btn-sm">Ver opciones</Link>
+                    </div>
+                  )}
+                </article>
+              );
+            })}
             {sending && (
               <article className="bubble assistant">
                 <div className="content typing"><span></span><span></span><span></span></div>
@@ -170,18 +180,31 @@ export default function Companion() {
           font-size: 0.95rem;
           line-height: 1.5;
           white-space: pre-wrap;
+          animation: bubblePop 0.4s cubic-bezier(.4, 1.4, .6, 1) both;
+          transform-origin: bottom left;
+        }
+        .bubble.user { transform-origin: bottom right; }
+        @keyframes bubblePop {
+          0%   { opacity: 0; transform: translateY(8px) scale(0.7); }
+          70%  { opacity: 1; transform: translateY(0)   scale(1.04); }
+          100% { opacity: 1; transform: translateY(0)   scale(1); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .bubble { animation: none; }
         }
         .bubble.user {
           align-self: flex-end;
           background: linear-gradient(135deg, var(--c-azul-800), var(--c-azul-700));
           color: #fff;
           border-bottom-right-radius: 4px;
+          box-shadow: 0 4px 14px rgba(16,36,62,0.18);
         }
         .bubble.assistant {
           align-self: flex-start;
           background: var(--c-marfil);
           border: 1px solid var(--c-borde-soft);
           border-bottom-left-radius: 4px;
+          box-shadow: 0 4px 14px rgba(108,80,124,0.08);
         }
         .bubble .content :global(strong),
         .bubble .content strong { font-weight: 700; }

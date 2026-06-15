@@ -7,6 +7,8 @@ import WebinarToast from './components/WebinarToast.jsx';
 import WellnessBackground from './components/WellnessBackground.jsx';
 import BuddyAvailableToast from './components/BuddyAvailableToast.jsx';
 import PageTransition from './components/PageTransition.jsx';
+import FloatingParticles from './components/FloatingParticles.jsx';
+import CursorFollower from './components/CursorFollower.jsx';
 
 // Páginas core eager (camino crítico: home + flujo del test)
 import Home       from './pages/Home.jsx';
@@ -54,6 +56,8 @@ export default function App() {
   return (
     <>
       {showBg && <WellnessBackground />}
+      {showBg && <FloatingParticles density={26} />}
+      {!isAdminRoute && <CursorFollower />}
       {!isAdminRoute && <Header />}
       <main>
         <Suspense fallback={<PageFallback />}>
