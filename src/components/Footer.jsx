@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-card">
           <div>
-            <h4>Sintonía FES Iztacala</h4>
+            <h4>AURA</h4>
             <p>
               Plataforma universitaria de orientación para el bienestar emocional.
               No constituye diagnóstico ni sustituye atención profesional.

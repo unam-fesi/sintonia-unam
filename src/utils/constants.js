@@ -1,8 +1,8 @@
 // =============================================================
-// Sintonía FES Iztacala — Constantes globales
+// AURA — Constantes globales
 // =============================================================
 
-export const APP_NAME = 'Sintonía FES Iztacala';
+export const APP_NAME = 'AURA';
 export const APP_TAGLINE = 'Orientación universitaria para el bienestar emocional';
 export const TEST_VERSION = '1.0.0';
 export const TOTAL_QUESTIONS = 20;
@@ -22,10 +22,10 @@ export const LEVEL_LABELS = {
 
 // Clave de sessionStorage para mantener el resultado durante la sesión
 export const STORAGE_KEYS = {
-  ANSWERS:      'sintonia.answers',
-  CONSENT:      'sintonia.consent',
-  RESULT:       'sintonia.result',
-  ANON_CODE:    'sintonia.anon_code',
+  ANSWERS:      'aura.answers',
+  CONSENT:      'aura.consent',
+  RESULT:       'aura.result',
+  ANON_CODE:    'aura.anon_code',
 };
 
 // Nombre de la Edge Function en Supabase

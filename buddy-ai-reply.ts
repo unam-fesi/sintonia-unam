@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía UNAM — Edge Function: buddy-ai-reply
+// AURA UNAM — Edge Function: buddy-ai-reply
 // Cuando un estudiante chatea con un "buddy" que en realidad es
 // un Pum-AI con persona de chavo universitario casual.
 // =============================================================
@@ -11,7 +11,7 @@ const SUPABASE_URL  = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_KEY   = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const GEMINI_KEY    = Deno.env.get("GEMINI_API_KEY")!;
 const GEMINI_MODEL  = Deno.env.get("GEMINI_MODEL") || "gemini-2.5-flash";
-const HASH_SALT     = Deno.env.get("HASH_SALT") || "sintonia-default-change-me";
+const HASH_SALT     = Deno.env.get("HASH_SALT") || "aura-default-change-me";
 
 // Rate limits
 const MAX_AI_MESSAGES_PER_HOUR_PER_PAIR = 30;
@@ -190,7 +190,7 @@ serve(async (req) => {
   if (!GEMINI_KEY) return json({ error: "GEMINI_API_KEY no configurada" }, 500);
 
   // System prompt — chavo casual ANÓNIMO
-  const SYSTEM = `Eres un/a estudiante de la UNAM conversando con OTRO estudiante anónimo en una plataforma de bienestar llamada Sintonía.
+  const SYSTEM = `Eres un/a estudiante de la UNAM conversando con OTRO estudiante anónimo en una plataforma de bienestar llamada AURA.
 Tu vibe interna es: ${persona.vibe}, te interesa ${persona.focus}, andas por los ${persona.edad}.
 
 REGLA #1 (LA MÁS IMPORTANTE - ANONIMATO):

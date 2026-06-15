@@ -63,7 +63,7 @@ export default function Library() {
         {loading ? <div className="spinner" style={{margin: '40px auto'}} /> : (
           <div className="lib-grid mt-3">
             {visible.length === 0 ? (
-              <p className="note">Aún no hay contenido en esta categoría. Tu equipo de Sintonía está agregando más.</p>
+              <p className="note">Aún no hay contenido en esta categoría. Tu equipo de AURA está agregando más.</p>
             ) : visible.map(item => <LibraryItem key={item.id} item={item} />)}
           </div>
         )}

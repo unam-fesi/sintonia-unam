@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const KEY = 'sintonia.theme';
+const KEY = 'aura.theme';
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(() => {

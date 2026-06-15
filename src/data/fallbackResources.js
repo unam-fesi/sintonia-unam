@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Catálogo base de recursos universitarios
+// AURA — Catálogo base de recursos universitarios
 // Tipos: orientacion_psicologica · tutoria_academica · deporte ·
 //        cultura · comunidad · medico · emergencia · sustentabilidad
 // =============================================================
@@ -66,7 +66,7 @@ export const FALLBACK_RESOURCES = [
   },
   {
     id: 'r-comunidad',
-    name: 'Círculos de bienestar Sintonía',
+    name: 'Círculos de bienestar AURA',
     type: 'comunidad',
     description: 'Encuentros guiados para compartir experiencias y construir comunidad.',
     audience: 'Estudiantes UNAM',

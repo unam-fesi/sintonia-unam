@@ -1,6 +1,6 @@
 # 04 · Base de datos
 
-Sintonía FES Iztacala corre sobre **Postgres 15** vía Supabase, con **Row Level Security (RLS)** habilitada en todas las tablas. Las migraciones se aplican como una secuencia de "waves" (`wave-A` a `wave-I`) más patches para `admin-features-migration.sql`.
+AURA corre sobre **Postgres 15** vía Supabase, con **Row Level Security (RLS)** habilitada en todas las tablas. Las migraciones se aplican como una secuencia de "waves" (`wave-A` a `wave-I`) más patches para `admin-features-migration.sql`.
 
 ## Mapa por dominio
 

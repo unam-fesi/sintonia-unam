@@ -1,5 +1,5 @@
 -- =============================================================
--- Sintonía UNAM — Habilitar realtime para buddy_messages y buddy_queue
+-- AURA UNAM — Habilitar realtime para buddy_messages y buddy_queue
 -- - buddy_messages: para el chat sin polling
 -- - buddy_queue:    para notificar a otros usuarios cuando alguien
 --   nuevo entra a buscar un buddy ("Alguien busca un buddy ahora")

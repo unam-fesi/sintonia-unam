@@ -6,6 +6,7 @@ import CrisisFAB from './components/CrisisFAB.jsx';
 import WebinarToast from './components/WebinarToast.jsx';
 import WellnessBackground from './components/WellnessBackground.jsx';
 import BuddyAvailableToast from './components/BuddyAvailableToast.jsx';
+import PageTransition from './components/PageTransition.jsx';
 
 // Páginas core eager (camino crítico: home + flujo del test)
 import Home       from './pages/Home.jsx';
@@ -56,6 +57,7 @@ export default function App() {
       {!isAdminRoute && <Header />}
       <main>
         <Suspense fallback={<PageFallback />}>
+          <PageTransition>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/consentimiento" element={<Consent />} />
@@ -84,6 +86,7 @@ export default function App() {
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </PageTransition>
         </Suspense>
       </main>
       {!isAdminRoute && <Footer />}

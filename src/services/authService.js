@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Auth y permisos para /admin
+// AURA — Auth y permisos para /admin
 // =============================================================
 
 import { supabase, isSupabaseConfigured } from '../config/supabaseClient.js';

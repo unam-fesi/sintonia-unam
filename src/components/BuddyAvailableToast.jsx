@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Toast: "alguien quiere un buddy ahora"
+// AURA — Toast: "alguien quiere un buddy ahora"
 // Suscribe en realtime a buddy_queue. Cuando alguien NUEVO se
 // mete en cola Y no eres tú Y no tienes pareja activa, muestra
 // un toast discreto invitando a conectar.
@@ -10,7 +10,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../config/supabaseClient.js';
 import { useStudent } from '../hooks/useStudent.js';
 
-const DISMISS_KEY = 'sintonia.buddyToast.dismissed';
+const DISMISS_KEY = 'aura.buddyToast.dismissed';
 const DISMISS_TTL_MS = 30 * 60 * 1000; // 30 min de "ya no me molestes"
 
 function recentlyDismissed() {

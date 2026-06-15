@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../config/supabaseClient.js';
 import { useStudent } from '../hooks/useStudent.js';
+import ScrollReveal from '../components/ScrollReveal.jsx';
 
 const SUGGESTIONS = [
   'Me ha costado dormir últimamente',
@@ -72,17 +73,20 @@ export default function Companion() {
   return (
     <section className="section">
       <div className="container" style={{maxWidth: 760}}>
-        <header className="comp-head">
-          <div>
-            <span className="tag azul">Pum-AI · Acompañante</span>
-            <h1 className="mt-2">Aquí te escucho 🤝</h1>
-          </div>
-          <div className="badges">
-            <span className="badge">Anónimo</span>
-            <span className="badge warm">No es terapia</span>
-          </div>
-        </header>
+        <ScrollReveal variant="slideUp">
+          <header className="comp-head">
+            <div>
+              <span className="tag azul">Pum-AI · Acompañante</span>
+              <h1 className="mt-2">Aquí te escucho 🤝</h1>
+            </div>
+            <div className="badges">
+              <span className="badge">Anónimo</span>
+              <span className="badge warm">No es terapia</span>
+            </div>
+          </header>
+        </ScrollReveal>
 
+        <ScrollReveal variant="zoomIn" delay={0.1}>
         <div className="chat-card">
           <div className="chat-stream">
             {messages.map((m, i) => (
@@ -134,6 +138,7 @@ export default function Companion() {
             Si estás en crisis, llama directamente a <a href="tel:8002900024">800 290 0024</a>.</small>
           </p>
         </div>
+        </ScrollReveal>
       </div>
 
       <style>{`

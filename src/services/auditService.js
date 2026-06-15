@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Audit log helper
+// AURA — Audit log helper
 // Llama esto desde cualquier acción admin para dejar trazo.
 // =============================================================
 

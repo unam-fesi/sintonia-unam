@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, NavLink, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase, isSupabaseConfigured } from '../config/supabaseClient.js';
 import { getAdminContext, signOut, can, ROLE_LABEL } from '../services/authService.js';
 import { checkSupabaseHealth } from '../services/supabaseService.js';
 import { checkOrientationHealth } from '../services/geminiService.js';
 import DimensionBubbles from '../components/DimensionBubbles.jsx';
+import ScrollReveal from '../components/ScrollReveal.jsx';
+import { animateCounter } from '../utils/scrollReveal.js';
 import AdminProfile from './AdminProfile.jsx';
 import AdminContent from './AdminContent.jsx';
 import AdminAudit from './AdminAudit.jsx';
@@ -231,8 +233,8 @@ function AdminSidebar({ ctx }) {
       {/* Logo arriba del sidebar — identidad de marca persistente */}
       <NavLink to="" end className="admin-brand" aria-label="Inicio del panel">
         <img
-          src={`${import.meta.env.BASE_URL}Sintonia.png`}
-          alt="Sintonía FES Iztacala"
+          src={`${import.meta.env.BASE_URL}Aura.png`}
+          alt="AURA"
           className="admin-brand-logo"
           loading="eager"
           decoding="async"
@@ -351,8 +353,8 @@ function AdminDashboard({ ctx }) {
       <header className="page-head dashboard-head">
         <div className="dashboard-welcome">
           <img
-            src={`${import.meta.env.BASE_URL}Sintonia.png`}
-            alt="Sintonía FES Iztacala"
+            src={`${import.meta.env.BASE_URL}Aura.png`}
+            alt="AURA"
             className="dashboard-logo"
             loading="eager"
             decoding="async"
@@ -404,13 +406,14 @@ function AdminDashboard({ ctx }) {
       ) : (
         <>
           <div className="kpi-grid">
-            <Kpi label="Sesiones totales" value={metrics.total ?? '—'} />
-            <Kpi label="Promedio reciente" value={metrics.avg ?? '—'} suffix="/100" />
-            <Kpi label="Nivel bajo"        value={metrics.levels?.bajo ?? 0}        accent="sage" />
-            <Kpi label="Nivel moderado"    value={metrics.levels?.moderado ?? 0}    accent="gold" />
-            <Kpi label="Nivel prioritario" value={metrics.levels?.prioritario ?? 0} accent="coral" />
+            <ScrollReveal variant="slideUp" delay={0}>    <Kpi label="Sesiones totales" value={metrics.total ?? '—'} animated /></ScrollReveal>
+            <ScrollReveal variant="slideUp" delay={0.07}> <Kpi label="Promedio reciente" value={metrics.avg ?? '—'} suffix="/100" animated /></ScrollReveal>
+            <ScrollReveal variant="slideUp" delay={0.14}> <Kpi label="Nivel bajo"        value={metrics.levels?.bajo ?? 0}        accent="sage" animated /></ScrollReveal>
+            <ScrollReveal variant="slideUp" delay={0.21}> <Kpi label="Nivel moderado"    value={metrics.levels?.moderado ?? 0}    accent="gold" animated /></ScrollReveal>
+            <ScrollReveal variant="slideUp" delay={0.28}> <Kpi label="Nivel prioritario" value={metrics.levels?.prioritario ?? 0} accent="coral" animated /></ScrollReveal>
           </div>
 
+          <ScrollReveal variant="zoomIn" delay={0.1}>
           <section className="panel mt-4">
             <span className="tag">Modelo dimensional de impacto</span>
             <h2 className="mt-2">Esferas de bienestar</h2>
@@ -421,6 +424,7 @@ function AdminDashboard({ ctx }) {
             </p>
             <DimensionBubbles data={metrics.dimensions || []} />
           </section>
+          </ScrollReveal>
 
           {can(r, 'view_aggregated') && (
             <section className="panel mt-4">
@@ -531,12 +535,24 @@ function permissionsDescription(role) {
   }
 }
 
-function Kpi({ label, value, suffix, accent }) {
+function Kpi({ label, value, suffix, accent, animated }) {
+  const numRef = useRef(null);
+  useEffect(() => {
+    if (!animated || !numRef.current) return;
+    const target = typeof value === 'number' ? value : Number(value);
+    if (!Number.isFinite(target)) {
+      numRef.current.textContent = String(value);
+      return;
+    }
+    animateCounter(numRef.current, target, { duration: 1100 });
+  }, [animated, value]);
   return (
     <div className={`kpi-card ${accent || ''}`}>
       <div className="label">{label}</div>
       <div className="value">
-        {value}
+        {animated && Number.isFinite(Number(value))
+          ? <span ref={numRef}>0</span>
+          : value}
         {suffix && <small style={{fontSize:'0.55em',marginLeft:4,color:'var(--c-gris)'}}>{suffix}</small>}
       </div>
     </div>

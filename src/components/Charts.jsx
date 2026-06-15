@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Gráficas simples SVG (sin dependencias externas)
+// AURA — Gráficas simples SVG (sin dependencias externas)
 // =============================================================
 
 // Línea temporal

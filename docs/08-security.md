@@ -1,6 +1,6 @@
 # 08 · Seguridad
 
-Sintonía FES Iztacala atiende a estudiantes que pueden estar pasando por momentos vulnerables. La seguridad y privacidad no son opcionales — son requisito ético.
+AURA atiende a estudiantes que pueden estar pasando por momentos vulnerables. La seguridad y privacidad no son opcionales — son requisito ético.
 
 ## Principios
 
@@ -117,7 +117,7 @@ Sintonía FES Iztacala atiende a estudiantes que pueden estar pasando por moment
 
 ## Reporte de vulnerabilidades
 
-Si encuentras una vulnerabilidad, NO abras un issue público. Contacta directo a `seguridad@sintonia.unam.mx` (o el canal definido por la coordinación).
+Si encuentras una vulnerabilidad, NO abras un issue público. Contacta directo a `seguridad@aura.iztacala.unam.mx` (o el canal definido por la coordinación).
 
 ## Compliance
 

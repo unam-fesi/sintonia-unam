@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Treasure Hunt
+// AURA — Treasure Hunt
 // Eventos con pistas que se desbloquean por progreso (check-ins, ruta, etc.)
 // =============================================================
 
@@ -86,7 +86,7 @@ export default function Adventure() {
       <div className="container" style={{maxWidth: 920}}>
         <header className="text-center" style={{maxWidth: 720, margin: '0 auto'}}>
           <span className="tag coral">Aventura</span>
-          <h1 className="mt-2">🗺 Búsqueda del Tesoro Sintonía</h1>
+          <h1 className="mt-2">🗺 Búsqueda del Tesoro AURA</h1>
           <p className="lede">
             Pum-AI ha escondido objetos especiales en el campus. Cada check-in y actividad de
             cuidado te desbloquea una pista. Caminar, observar y descubrir es ya un acto de
@@ -97,7 +97,7 @@ export default function Adventure() {
         {events.length === 0 ? (
           <div className="panel text-center mt-3">
             <h2>No hay aventuras activas en este momento</h2>
-            <p className="lede">Pronto tu equipo de Sintonía publicará una nueva ruta misteriosa.</p>
+            <p className="lede">Pronto tu equipo de AURA publicará una nueva ruta misteriosa.</p>
             <p className="note">Mientras tanto, sigue acumulando check-ins. Cada uno se contará para futuras aventuras.</p>
           </div>
         ) : events.map(ev => {

@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Lecturas/escrituras a Supabase
+// AURA — Lecturas/escrituras a Supabase
 // Cae a datos fallback si la BD no está configurada.
 // =============================================================
 

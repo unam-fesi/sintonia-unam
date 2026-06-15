@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Admin: Usuarios anónimos
+// AURA — Admin: Usuarios anónimos
 // Rediseño con cards visuales, filtros, delete cascada (admin only)
 // =============================================================
 
@@ -121,7 +121,7 @@ export default function AdminAnonymous({ ctx }) {
         <div>
           <span className="tag azul">Comunidad anónima</span>
           <h1 className="mt-2">Usuarios anónimos</h1>
-          <p className="lede">Quiénes están usando Sintonía FES Iztacala. Sin nombres ni identificadores personales — solo códigos y métricas.</p>
+          <p className="lede">Quiénes están usando AURA. Sin nombres ni identificadores personales — solo códigos y métricas.</p>
         </div>
         <button className="btn btn-ghost btn-sm" onClick={exportCSV}>⬇ Exportar CSV</button>
       </header>

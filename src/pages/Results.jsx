@@ -4,6 +4,7 @@ import ResultCard from '../components/ResultCard.jsx';
 import DimensionChart from '../components/DimensionChart.jsx';
 import SafetyNotice from '../components/SafetyNotice.jsx';
 import PostTestFeedback from '../components/PostTestFeedback.jsx';
+import ScrollReveal from '../components/ScrollReveal.jsx';
 import { STORAGE_KEYS } from '../utils/constants.js';
 import { getRecommendationsFor } from '../data/fallbackRecommendations.js';
 
@@ -34,7 +35,7 @@ export default function Results() {
 
   function copyResult() {
     const lines = [
-      `Sintonía FES Iztacala — Tu orientación`,
+      `AURA — Tu orientación`,
       `Código anónimo: ${result.anonymous_code}`,
       `Nivel general: ${result.general_level_label} (${result.total_score}/100)`,
       ``,
@@ -52,101 +53,121 @@ export default function Results() {
   return (
     <section className="section">
       <div className="container" style={{maxWidth: 1000}}>
-        <ResultCard result={result} />
+        <ScrollReveal variant="blurIn">
+          <ResultCard result={result} />
+        </ScrollReveal>
 
         {result.general_level === 'prioritario' && (
-          <div className="crisis-banner">
-            <strong>📞 Tus respuestas sugieren acercarte a apoyo profesional.</strong>
-            <p>Hay servicios universitarios y la <strong>Línea de la Vida 800 290 0024</strong> disponibles 24/7.</p>
-            <Link to="/apoyo" className="btn btn-coral btn-sm">Ver opciones de apoyo →</Link>
-          </div>
+          <ScrollReveal variant="slideUp" delay={0.1}>
+            <div className="crisis-banner">
+              <strong>📞 Tus respuestas sugieren acercarte a apoyo profesional.</strong>
+              <p>Hay servicios universitarios y la <strong>Línea de la Vida 800 290 0024</strong> disponibles 24/7.</p>
+              <Link to="/apoyo" className="btn btn-coral btn-sm">Ver opciones de apoyo →</Link>
+            </div>
+          </ScrollReveal>
         )}
 
-        <div className="route-cta mt-3">
-          <div>
-            <strong>✨ Crea tu ruta de bienestar</strong>
-            <small>Pum-AI te puede generar un plan diario de 7 o 14 días personalizado a tu resultado.</small>
+        <ScrollReveal variant="slideUp" delay={0.15}>
+          <div className="route-cta mt-3">
+            <div>
+              <strong>✨ Crea tu ruta de bienestar</strong>
+              <small>Pum-AI te puede generar un plan diario de 7 o 14 días personalizado a tu resultado.</small>
+            </div>
+            <Link to="/ruta" className="btn btn-gold">Comenzar mi ruta →</Link>
           </div>
-          <Link to="/ruta" className="btn btn-gold">Comenzar mi ruta →</Link>
-        </div>
+        </ScrollReveal>
 
-        <SafetyNotice>
-          {safetyNote || (
-            <>
-              <strong>Esta orientación es informativa.</strong> Tus respuestas sugieren áreas en las que vale
-              la pena enfocar tu autocuidado, pero no constituyen un diagnóstico clínico. Si lo necesitas,
-              acércate a un servicio de orientación universitario.
-            </>
-          )}
-        </SafetyNotice>
+        <ScrollReveal variant="fadeIn" delay={0.2}>
+          <SafetyNotice>
+            {safetyNote || (
+              <>
+                <strong>Esta orientación es informativa.</strong> Tus respuestas sugieren áreas en las que vale
+                la pena enfocar tu autocuidado, pero no constituyen un diagnóstico clínico. Si lo necesitas,
+                acércate a un servicio de orientación universitario.
+              </>
+            )}
+          </SafetyNotice>
+        </ScrollReveal>
 
         <div className="results-grid mt-4">
-          <div className="panel">
-            <span className="tag azul">Tus dimensiones</span>
-            <h2 className="mt-2">Cómo se ve tu bienestar por área</h2>
-            <p className="lede">
-              Cada barra representa el nivel de atención que sugieren tus respuestas en esa área.
-              Mayor puntaje = mayor invitación al autocuidado.
-            </p>
-            <DimensionChart dimensions={result.dimensions} />
-          </div>
+          <ScrollReveal variant="slideRight">
+            <div className="panel">
+              <span className="tag azul">Tus dimensiones</span>
+              <h2 className="mt-2">Cómo se ve tu bienestar por área</h2>
+              <p className="lede">
+                Cada barra representa el nivel de atención que sugieren tus respuestas en esa área.
+                Mayor puntaje = mayor invitación al autocuidado.
+              </p>
+              <DimensionChart dimensions={result.dimensions} />
+            </div>
+          </ScrollReveal>
 
-          <div className="panel">
-            <span className="tag coral">Acciones sugeridas</span>
-            <h2 className="mt-2">Pasos pequeños y útiles</h2>
-            {aiActions.length > 0 ? (
+          <ScrollReveal variant="slideLeft" delay={0.15}>
+            <div className="panel">
+              <span className="tag coral">Acciones sugeridas</span>
+              <h2 className="mt-2">Pasos pequeños y útiles</h2>
+              {aiActions.length > 0 ? (
+                <ul className="rec-list">
+                  {aiActions.map((a, i) => <li key={i}>✦ {a}</li>)}
+                </ul>
+              ) : (
+                <ul className="rec-list">
+                  {baseRecs.length === 0 && (
+                    <li>Sigue cultivando tus rutinas de bienestar. Tus respuestas no muestran áreas urgentes hoy.</li>
+                  )}
+                  {baseRecs.map((r, i) => (
+                    <li key={i}>
+                      <strong>{r.title}.</strong> {r.description}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </ScrollReveal>
+        </div>
+
+        <ScrollReveal variant="zoomIn">
+          <div className="panel mt-4">
+            <span className="tag mint">Recursos sugeridos</span>
+            <h2 className="mt-2">Recursos universitarios para ti</h2>
+            {aiResources.length > 0 ? (
               <ul className="rec-list">
-                {aiActions.map((a, i) => <li key={i}>✦ {a}</li>)}
+                {aiResources.map((r, i) => <li key={i}>📌 {r}</li>)}
               </ul>
             ) : (
+              <p>Visita la sección de <Link to="/recursos">Recursos de apoyo</Link> para ver el catálogo completo.</p>
+            )}
+          </div>
+        </ScrollReveal>
+
+        {result.top_attention_areas?.length > 0 && (
+          <ScrollReveal variant="slideUp">
+            <div className="panel mt-4">
+              <span className="tag">Áreas con mayor atención sugerida</span>
+              <h2 className="mt-2">Dónde poner foco</h2>
               <ul className="rec-list">
-                {baseRecs.length === 0 && (
-                  <li>Sigue cultivando tus rutinas de bienestar. Tus respuestas no muestran áreas urgentes hoy.</li>
-                )}
-                {baseRecs.map((r, i) => (
-                  <li key={i}>
-                    <strong>{r.title}.</strong> {r.description}
+                {result.top_attention_areas.map(a => (
+                  <li key={a.id}>
+                    <strong>{a.label}</strong> — Puntaje: {a.score}, nivel: {a.level === 'prioritario' ? 'prioritario' : 'moderado'}.
                   </li>
                 ))}
               </ul>
-            )}
-          </div>
-        </div>
-
-        <div className="panel mt-4">
-          <span className="tag sage">Recursos sugeridos</span>
-          <h2 className="mt-2">Recursos universitarios para ti</h2>
-          {aiResources.length > 0 ? (
-            <ul className="rec-list">
-              {aiResources.map((r, i) => <li key={i}>📌 {r}</li>)}
-            </ul>
-          ) : (
-            <p>Visita la sección de <Link to="/recursos">Recursos de apoyo</Link> para ver el catálogo completo.</p>
-          )}
-        </div>
-
-        {result.top_attention_areas?.length > 0 && (
-          <div className="panel mt-4">
-            <span className="tag">Áreas con mayor atención sugerida</span>
-            <h2 className="mt-2">Dónde poner foco</h2>
-            <ul className="rec-list">
-              {result.top_attention_areas.map(a => (
-                <li key={a.id}>
-                  <strong>{a.label}</strong> — Puntaje: {a.score}, nivel: {a.level === 'prioritario' ? 'prioritario' : 'moderado'}.
-                </li>
-              ))}
-            </ul>
-          </div>
+            </div>
+          </ScrollReveal>
         )}
 
-        <PostTestFeedback sessionId={result.session_id} />
+        <ScrollReveal variant="fadeIn">
+          <PostTestFeedback sessionId={result.session_id} />
+        </ScrollReveal>
 
-        <div className="results-actions mt-4">
-          <button className="btn btn-gold" onClick={copyResult}>📋 Copiar resultado</button>
-          <Link to="/recursos" className="btn btn-secondary btn-primary">Ver recursos universitarios</Link>
-          <Link to="/evaluacion" className="btn btn-ghost">Volver a evaluar</Link>
-          <Link to="/" className="btn btn-ghost">Ir al inicio</Link>
-        </div>
+        <ScrollReveal variant="slideUp" delay={0.1}>
+          <div className="results-actions mt-4">
+            <button className="btn btn-gold" onClick={copyResult}>📋 Copiar resultado</button>
+            <Link to="/recursos" className="btn btn-secondary btn-primary">Ver recursos universitarios</Link>
+            <Link to="/evaluacion" className="btn btn-ghost">Volver a evaluar</Link>
+            <Link to="/" className="btn btn-ghost">Ir al inicio</Link>
+          </div>
+        </ScrollReveal>
       </div>
 
       <style>{`

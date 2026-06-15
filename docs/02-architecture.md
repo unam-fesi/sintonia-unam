@@ -60,7 +60,7 @@
 
 ### Hosting
 - **GitHub Pages** sobre rama `gh-pages` (script `npm run deploy` con `gh-pages -d dist`)
-- `vite.config.js` define `base: '/sintonia-fesi/'` para que los assets resuelvan bien
+- `vite.config.js` define `base: '/aura-fesi/'` para que los assets resuelvan bien
 
 ### Mapa
 - **Leaflet 1.9** + **OpenStreetMap** tiles
@@ -70,7 +70,7 @@
 ## Estructura de carpetas
 
 ```
-sintonia-fesi/
+aura-fesi/
 ├── docs/                    ← Esta documentación
 ├── public/
 │   └── data/                ← Sonidos relajantes (seed)

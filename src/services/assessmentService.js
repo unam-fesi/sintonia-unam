@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Orquesta el flujo de evaluación
+// AURA — Orquesta el flujo de evaluación
 // 1. Calcula resultado local (transparente).
 // 2. Persiste sesión + respuestas (anónimas) en Supabase.
 // 3. Pide a la Edge Function una orientación amigable con Gemini.

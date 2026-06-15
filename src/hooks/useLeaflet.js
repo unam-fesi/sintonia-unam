@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Carga Leaflet vía CDN una sola vez
+// AURA — Carga Leaflet vía CDN una sola vez
 // Evita agregar la dependencia npm — sirve para mapas simples.
 // =============================================================
 

@@ -27,9 +27,9 @@ export default function Consent() {
             Tu participación es libre y puedes detenerla en cualquier momento.
           </p>
 
-          <h2 className="mt-4">¿Qué es Sintonía FES Iztacala?</h2>
+          <h2 className="mt-4">¿Qué es AURA?</h2>
           <p>
-            Sintonía FES Iztacala es una herramienta <strong>informativa</strong> de orientación para el bienestar emocional.
+            AURA es una herramienta <strong>informativa</strong> de orientación para el bienestar emocional.
             <strong> No es un servicio médico, terapéutico ni de atención clínica.</strong>
             Su propósito es ayudarte a reflexionar sobre cómo te has sentido y conocer recursos de apoyo
             dentro de la universidad.

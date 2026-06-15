@@ -1,6 +1,6 @@
-# 📚 Documentación · Sintonía FES Iztacala
+# 📚 Documentación · AURA
 
-Bienvenido a la documentación técnica y funcional del proyecto **Sintonía FES Iztacala**.
+Bienvenido a la documentación técnica y funcional del proyecto **AURA**.
 
 ## Índice
 
@@ -19,12 +19,12 @@ Bienvenido a la documentación técnica y funcional del proyecto **Sintonía FES
 
 ## Quick links
 
-- 🏠 [Landing pública](https://unam-fesi.github.io/sintonia-fesi/)
-- 🔒 [Panel admin](https://unam-fesi.github.io/sintonia-fesi/admin/login)
-- 📦 [Repositorio](https://github.com/unam-fesi/sintonia-fesi)
+- 🏠 [Landing pública](https://unam-fesi.github.io/aura-fesi/)
+- 🔒 [Panel admin](https://unam-fesi.github.io/aura-fesi/admin/login)
+- 📦 [Repositorio](https://github.com/unam-fesi/aura-fesi)
 - 🛠 [README de instalación local](../README.md)
 
 ## Contacto
 
 - Programa universitario UNAM
-- Contacto: contacto@sintonia.unam.mx
+- Contacto: contacto@aura.iztacala.unam.mx

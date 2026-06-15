@@ -9,12 +9,12 @@ export default function Privacy() {
           <span className="tag azul">Aviso de privacidad y uso responsable</span>
           <h1 className="mt-2">Tu privacidad importa</h1>
           <p className="lede">
-            Sintonía FES Iztacala es una herramienta universitaria de orientación informativa
+            AURA es una herramienta universitaria de orientación informativa
             que opera con el menor uso posible de información. Este aviso explica cómo
             funciona la herramienta, qué datos manejamos y cómo se usan.
           </p>
 
-          <h2 className="mt-4">¿Qué es Sintonía FES Iztacala?</h2>
+          <h2 className="mt-4">¿Qué es AURA?</h2>
           <p>
             Es una plataforma anónima que permite a la comunidad universitaria reflexionar
             sobre su bienestar emocional, identificar áreas de autocuidado y conocer recursos
@@ -75,7 +75,7 @@ export default function Privacy() {
 
           <h2 className="mt-4">Límites de la herramienta</h2>
           <ul>
-            <li>Sintonía FES Iztacala es <strong>informativa</strong>, no diagnóstica.</li>
+            <li>AURA es <strong>informativa</strong>, no diagnóstica.</li>
             <li>No reemplaza terapia, intervención psicológica clínica ni atención médica.</li>
             <li>Si necesitas apoyo, te invitamos a acercarte a los servicios universitarios.</li>
           </ul>

@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Admin Programa
+// AURA — Admin Programa
 // CRUD de: árboles, eventos del calendario, treasure hunts, biblioteca, especialistas
 // =============================================================
 

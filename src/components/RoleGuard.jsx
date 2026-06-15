@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — RoleGuard
+// AURA — RoleGuard
 // Bloquea rutas admin a usuarios sin el permiso requerido.
 // =============================================================
 

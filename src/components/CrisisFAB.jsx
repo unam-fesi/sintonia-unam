@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Botón flotante de Apoyo Inmediato
+// AURA — Botón flotante de Apoyo Inmediato
 // Aparece cuando: el último resultado fue prioritario, O cuando
 // el usuario lo activa manualmente desde /apoyo.
 // =============================================================
@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { STORAGE_KEYS } from '../utils/constants.js';
 
-const KEY = 'sintonia.crisis_visible';
+const KEY = 'aura.crisis_visible';
 
 export default function CrisisFAB() {
   const location = useLocation();

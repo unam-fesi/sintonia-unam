@@ -37,8 +37,8 @@ export default function Hero() {
             <div className="hero-logo-wrap">
               <img
                 className="hero-logo"
-                src={`${import.meta.env.BASE_URL}Sintonia.png`}
-                alt="Sintonía FES Iztacala"
+                src={`${import.meta.env.BASE_URL}Aura.png`}
+                alt="AURA"
                 loading="eager"
                 decoding="async"
               />

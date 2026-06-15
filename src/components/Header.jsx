@@ -51,16 +51,16 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="container topbar">
-        <Link to="/" className="brand" aria-label="Sintonía FES Iztacala, ir al inicio">
+        <Link to="/" className="brand" aria-label="AURA, ir al inicio">
           <img
-            src={`${import.meta.env.BASE_URL}Sintonia-icon192.png`}
-            srcSet={`${import.meta.env.BASE_URL}Sintonia-icon192.png 1x, ${import.meta.env.BASE_URL}Sintonia-icon512.png 2x`}
-            alt="Sintonía FES Iztacala"
+            src={`${import.meta.env.BASE_URL}Aura-icon192.png`}
+            srcSet={`${import.meta.env.BASE_URL}Aura-icon192.png 1x, ${import.meta.env.BASE_URL}Aura-icon512.png 2x`}
+            alt="AURA"
             className="brand-logo"
             width="56" height="56"
           />
           <div className="brand-copy">
-            <strong>Sintonía FES Iztacala</strong>
+            <strong>AURA</strong>
             <span>Bienestar emocional universitario</span>
           </div>
         </Link>

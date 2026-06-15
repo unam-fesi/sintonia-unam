@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../config/supabaseClient.js';
 import { useStudent } from '../hooks/useStudent.js';
 import SafetyNotice from '../components/SafetyNotice.jsx';
+import ScrollReveal from '../components/ScrollReveal.jsx';
 import { STORAGE_KEYS } from '../utils/constants.js';
 
 const CATEGORY_ICON = {
@@ -181,8 +182,9 @@ export default function WellnessRoute() {
   return (
     <section className="section">
       <div className="container" style={{maxWidth: 880}}>
+        <ScrollReveal variant="blurIn">
         <header className="panel" style={{background:'linear-gradient(135deg, var(--c-azul-100), var(--c-salvia-100))'}}>
-          <span className="tag sage">Tu ruta</span>
+          <span className="tag mint">Tu ruta</span>
           <h1 className="mt-2">{route.plan?.title || `Ruta de ${route.duration_days} días`}</h1>
           <p className="lede">{route.plan?.summary}</p>
 
@@ -205,10 +207,12 @@ export default function WellnessRoute() {
             <Link to="/check-in" className="btn btn-primary btn-sm">📝 Hacer check-in</Link>
           </div>
         </header>
+        </ScrollReveal>
 
         <div className="days-list mt-3">
-          {(route.plan?.days || []).map(day => (
-            <article key={day.day} className="day-card">
+          {(route.plan?.days || []).map((day, i) => (
+            <ScrollReveal key={day.day} variant="slideUp" delay={Math.min(0.5, i * 0.06)}>
+            <article className="day-card">
               <header>
                 <span className="day-num">Día {day.day}</span>
                 <h3>{day.focus}</h3>
@@ -235,6 +239,7 @@ export default function WellnessRoute() {
                 })}
               </ul>
             </article>
+            </ScrollReveal>
           ))}
         </div>
 

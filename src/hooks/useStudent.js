@@ -1,12 +1,12 @@
 // =============================================================
-// Sintonía FES Iztacala — Hook para gestionar la "sesión" anónima del estudiante
+// AURA — Hook para gestionar la "sesión" anónima del estudiante
 // Guarda anonymous_code (+ password opcional) en sessionStorage.
 // =============================================================
 
 import { useEffect, useState, useCallback } from 'react';
 import { STORAGE_KEYS } from '../utils/constants.js';
 
-const KEY = 'sintonia.student';
+const KEY = 'aura.student';
 
 export function getStudent() {
   try {

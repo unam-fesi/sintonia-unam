@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Modal de sugerencias de Pum-AI para preguntas
+// AURA — Modal de sugerencias de Pum-AI para preguntas
 // =============================================================
 
 import { useState } from 'react';

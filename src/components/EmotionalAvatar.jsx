@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Avatar emocional
+// AURA — Avatar emocional
 // Criatura suave que respira y cambia de expresión / color
 // según último resultado y último check-in del usuario.
 // =============================================================

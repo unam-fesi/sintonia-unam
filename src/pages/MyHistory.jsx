@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { supabase } from '../config/supabaseClient.js';
 import SafetyNotice from '../components/SafetyNotice.jsx';
 import EmotionalAvatar from '../components/EmotionalAvatar.jsx';
+import ScrollReveal from '../components/ScrollReveal.jsx';
 import { setStudent, clearStudent, getStudent } from '../hooks/useStudent.js';
 
 // Extrae el mensaje de error real cuando una Edge Function devuelve non-2xx.
@@ -313,14 +314,17 @@ function HistoryView({ data, code, onLogout }) {
   return (
     <section className="section">
       <div className="container">
-        <header style={{display:'flex',justifyContent:'space-between',alignItems:'baseline',flexWrap:'wrap',gap:12}}>
-          <div>
-            <span className="tag">Mi historia</span>
-            <h1 className="mt-2">Tu evolución, código <code>{code}</code></h1>
-          </div>
-          <button className="btn btn-ghost btn-sm" onClick={onLogout}>Cerrar sesión</button>
-        </header>
+        <ScrollReveal variant="slideUp">
+          <header style={{display:'flex',justifyContent:'space-between',alignItems:'baseline',flexWrap:'wrap',gap:12}}>
+            <div>
+              <span className="tag">Mi historia</span>
+              <h1 className="mt-2">Tu evolución, código <code>{code}</code></h1>
+            </div>
+            <button className="btn btn-ghost btn-sm" onClick={onLogout}>Cerrar sesión</button>
+          </header>
+        </ScrollReveal>
 
+        <ScrollReveal variant="zoomIn" delay={0.1}>
         <div className="avatar-row mt-3">
           <EmotionalAvatar code={code} />
           <div className="quick-actions">
@@ -335,8 +339,10 @@ function HistoryView({ data, code, onLogout }) {
             <Link to="/calendario" className="btn btn-ghost">📅 Calendario</Link>
           </div>
         </div>
+        </ScrollReveal>
 
         <div className="hist-grid mt-3">
+          <ScrollReveal variant="slideRight">
           <section className="panel">
             <h2>Evaluaciones ({data.sessions.length})</h2>
             {data.sessions.length === 0 && <p className="note">Aún no has hecho ningún test. <Link to="/consentimiento">Empieza ahora</Link>.</p>}
@@ -350,7 +356,9 @@ function HistoryView({ data, code, onLogout }) {
               ))}
             </ul>
           </section>
+          </ScrollReveal>
 
+          <ScrollReveal variant="slideUp" delay={0.12}>
           <section className="panel">
             <h2>Check-ins ({data.checkins.length})</h2>
             {data.checkins.length === 0 && <p className="note">Aún no has hecho check-in semanal.</p>}
@@ -363,7 +371,9 @@ function HistoryView({ data, code, onLogout }) {
               ))}
             </ul>
           </section>
+          </ScrollReveal>
 
+          <ScrollReveal variant="slideLeft" delay={0.18}>
           <section className="panel">
             <h2>Diario ({data.journal.length})</h2>
             {data.journal.length === 0 && <p className="note">Aún no tienes entradas.</p>}
@@ -376,7 +386,9 @@ function HistoryView({ data, code, onLogout }) {
               ))}
             </ul>
           </section>
+          </ScrollReveal>
 
+          <ScrollReveal variant="zoomIn" delay={0.24}>
           <section className="panel">
             <h2>Logros y retos</h2>
             <ChallengesTracker achievements={data.achievements || []} />
@@ -391,6 +403,7 @@ function HistoryView({ data, code, onLogout }) {
               </ul>
             )}
           </section>
+          </ScrollReveal>
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía UNAM — Edge Function: anon-auth
+// AURA UNAM — Edge Function: anon-auth
 // Registro y verificación de "cuentas anónimas" con código + password.
 // Captura IP hasheada para detección de abuso.
 //
@@ -14,7 +14,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const SUPABASE_URL  = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_KEY   = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-const HASH_SALT     = Deno.env.get("HASH_SALT") || "sintonia-default-change-me";
+const HASH_SALT     = Deno.env.get("HASH_SALT") || "aura-default-change-me";
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -86,7 +86,7 @@ serve(async (req) => {
         pong: true,
         has_url: !!SUPABASE_URL,
         has_service: !!SERVICE_KEY,
-        has_salt: HASH_SALT !== "sintonia-default-change-me",
+        has_salt: HASH_SALT !== "aura-default-change-me",
       });
     }
 

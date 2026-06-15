@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Catálogo base de recomendaciones
+// AURA — Catálogo base de recomendaciones
 // Estructura: { dimension, level, title, description }
 // level: 'bajo' | 'moderado' | 'prioritario'
 // Se utilizan si no hay conexión con Supabase / Gemini.

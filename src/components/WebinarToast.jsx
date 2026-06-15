@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Toast flotante de próximos webinars
+// AURA — Toast flotante de próximos webinars
 // =============================================================
 
 import { useEffect, useState } from 'react';
@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { supabase, isSupabaseConfigured } from '../config/supabaseClient.js';
 import { useStudent } from '../hooks/useStudent.js';
 
-const DISMISS_PREFIX = 'sintonia.webinar_dismissed_';
+const DISMISS_PREFIX = 'aura.webinar_dismissed_';
 const DISMISS_HOURS = 24;
 
 export default function WebinarToast() {

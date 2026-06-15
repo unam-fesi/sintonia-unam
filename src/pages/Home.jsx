@@ -3,6 +3,7 @@ import Hero from '../components/Hero.jsx';
 import InfoCard from '../components/InfoCard.jsx';
 import SafetyNotice from '../components/SafetyNotice.jsx';
 import { DailyQuote, DailyChallenge } from '../components/DailyContent.jsx';
+import ScrollReveal, { RevealStagger } from '../components/ScrollReveal.jsx';
 
 const PILLARS = [
   { icon: '📝', accent: 'azul',    title: 'Evaluación breve',
@@ -24,7 +25,7 @@ const AREAS = [
   { icon: '⚖️', tone: 'oro',      label: 'Equilibrio' },
   { icon: '🌿', tone: 'mint',     label: 'Calma'      },
   { icon: '🤝', tone: 'coral',    label: 'Comunidad'  },
-  { icon: '✨', tone: 'lavanda',  label: 'Sintonía'   },
+  { icon: '✨', tone: 'lavanda',  label: 'AURA'   },
   { icon: '🎨', tone: 'rosa',     label: 'Arte'       },
   { icon: '🏃', tone: 'durazno',  label: 'Deporte'    },
   { icon: '📚', tone: 'azul',     label: 'Estudio'    },
@@ -39,18 +40,22 @@ export default function Home() {
       {/* ===== Áreas que acompañamos (antes orbs del hero) ===== */}
       <section className="section-sm">
         <div className="container">
-          <div className="text-center" style={{maxWidth: 640, margin: '0 auto'}}>
-            <span className="tag lavanda">Áreas que acompañamos</span>
-            <h2 className="mt-2" style={{fontSize:'clamp(1.3rem, 2vw, 1.8rem)'}}>
-              Lo que cuida Sintonía FES Iztacala
-            </h2>
-          </div>
+          <ScrollReveal variant="slideUp">
+            <div className="text-center" style={{maxWidth: 640, margin: '0 auto'}}>
+              <span className="tag lavanda">Áreas que acompañamos</span>
+              <h2 className="mt-2" style={{fontSize:'clamp(1.3rem, 2vw, 1.8rem)'}}>
+                Lo que cuida AURA
+              </h2>
+            </div>
+          </ScrollReveal>
           <div className="areas-grid">
-            {AREAS.map(a => (
-              <div key={a.label} className={`area-chip area-${a.tone}`}>
-                <span className="area-icon" aria-hidden="true">{a.icon}</span>
-                <span className="area-label">{a.label}</span>
-              </div>
+            {AREAS.map((a, i) => (
+              <ScrollReveal key={a.label} variant="slideUp" delay={0.06 * i}>
+                <div className={`area-chip area-${a.tone}`}>
+                  <span className="area-icon" aria-hidden="true">{a.icon}</span>
+                  <span className="area-label">{a.label}</span>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
           <style>{`
@@ -116,23 +121,28 @@ export default function Home() {
 
       <section className="section">
         <div className="container">
-          <div className="text-center" style={{maxWidth: 720, margin: '0 auto'}}>
-            <span className="tag">Cómo te acompaña Sintonía FES Iztacala</span>
-            <h2 className="mt-2">Una orientación clara, anónima y con sentido comunitario</h2>
-            <p className="lede">
-              Sintonía FES Iztacala es una plataforma para reflexionar sobre tu bienestar emocional,
-              identificar áreas de autocuidado y conocer recursos de apoyo dentro de la UNAM.
-            </p>
-          </div>
+          <ScrollReveal variant="slideUp">
+            <div className="text-center" style={{maxWidth: 720, margin: '0 auto'}}>
+              <span className="tag">Cómo te acompaña AURA</span>
+              <h2 className="mt-2">Una orientación clara, anónima y con sentido comunitario</h2>
+              <p className="lede">
+                AURA es una plataforma para reflexionar sobre tu bienestar emocional,
+                identificar áreas de autocuidado y conocer recursos de apoyo dentro de la UNAM.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="pillars">
-            {PILLARS.map(p => (
-              <InfoCard key={p.title} icon={p.icon} title={p.title} accent={p.accent}>
-                {p.text}
-              </InfoCard>
+            {PILLARS.map((p, i) => (
+              <ScrollReveal key={p.title} variant="slideUp" delay={0.12 * i}>
+                <InfoCard icon={p.icon} title={p.title} accent={p.accent}>
+                  {p.text}
+                </InfoCard>
+              </ScrollReveal>
             ))}
           </div>
 
+          <ScrollReveal variant="zoomIn" delay={0.1}>
           <div className="continuity-card">
             <div className="continuity-icon" aria-hidden="true">🔁</div>
             <div>
@@ -164,6 +174,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          </ScrollReveal>
         </div>
 
         <style>{`

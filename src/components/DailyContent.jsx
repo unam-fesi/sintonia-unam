@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Frase y Reto del día
+// AURA — Frase y Reto del día
 // Selección determinista por fecha desde student_library.
 // =============================================================
 

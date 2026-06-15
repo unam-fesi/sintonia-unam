@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Lógica de cálculo del resultado
+// AURA — Lógica de cálculo del resultado
 // Transparente y trazable. Sin terminología clínica.
 // =============================================================
 

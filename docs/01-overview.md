@@ -1,8 +1,8 @@
 # 01 · Overview del proyecto
 
-## ¿Qué es Sintonía FES Iztacala?
+## ¿Qué es AURA?
 
-**Sintonía FES Iztacala** es una plataforma web de orientación universitaria para el bienestar emocional de la comunidad estudiantil de la Universidad Nacional Autónoma de México.
+**AURA** es una plataforma web de orientación universitaria para el bienestar emocional de la comunidad estudiantil de la Universidad Nacional Autónoma de México.
 
 Es **informativa, anónima y no diagnóstica**. Combina:
 

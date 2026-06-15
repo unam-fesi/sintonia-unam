@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — DimensionBubbles 3D
+// AURA — DimensionBubbles 3D
 // Esferas distribuidas en una esfera virtual.
 // Rotación ambiental lenta + drag con mouse en horizontal y vertical.
 // =============================================================
@@ -175,7 +175,7 @@ export default function DimensionBubbles({ data = [] }) {
         {/* aura central */}
         <circle cx={CENTER_X} cy={CENTER_Y} r={SPHERE_R + 60} fill="url(#aura)" />
 
-        {/* "Sintonía" centro */}
+        {/* "AURA" centro */}
         <circle cx={CENTER_X} cy={CENTER_Y} r="10" fill="#C9A227" opacity="0.85"/>
         <text
           x={CENTER_X} y={CENTER_Y + 26}
@@ -183,7 +183,7 @@ export default function DimensionBubbles({ data = [] }) {
           fill="#10243E" fontWeight="700"
           style={{userSelect: 'none', pointerEvents: 'none'}}
         >
-          Sintonía
+          AURA
         </text>
 
         {/* esferas */}

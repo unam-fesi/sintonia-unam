@@ -48,8 +48,8 @@ export default function AdminLogin() {
 
       <div className="login-stack">
         <img
-          src={`${import.meta.env.BASE_URL}Sintonia.png`}
-          alt="Sintonía FES Iztacala"
+          src={`${import.meta.env.BASE_URL}Aura.png`}
+          alt="AURA"
           className="login-logo"
           loading="eager"
           decoding="async"
@@ -57,7 +57,7 @@ export default function AdminLogin() {
 
         <div className="login-card">
           <h1>Acceso interno</h1>
-          <p className="lede text-center">Panel administrativo · Sintonía FES Iztacala</p>
+          <p className="lede text-center">Panel administrativo · AURA</p>
 
           {error && <div className="login-error">{error}</div>}
 

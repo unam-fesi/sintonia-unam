@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Código anónimo de sesión
+// AURA — Código anónimo de sesión
 // Genera un identificador legible y NO PII para que la persona
 // pueda regresar a su resultado durante la sesión y, en Fase 2,
 // para seguimiento longitudinal voluntario.

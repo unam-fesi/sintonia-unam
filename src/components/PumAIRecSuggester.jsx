@@ -1,5 +1,5 @@
 // =============================================================
-// Sintonía FES Iztacala — Pum-AI sugiere recomendaciones por dimensión/nivel
+// AURA — Pum-AI sugiere recomendaciones por dimensión/nivel
 // =============================================================
 
 import { useState } from 'react';

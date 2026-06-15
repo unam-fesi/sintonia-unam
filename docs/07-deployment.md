@@ -1,6 +1,6 @@
 # 07 · Despliegue
 
-Guía completa para levantar Sintonía FES Iztacala de cero, ya sea en un proyecto Supabase nuevo o re-desplegando.
+Guía completa para levantar AURA de cero, ya sea en un proyecto Supabase nuevo o re-desplegando.
 
 ## Prerrequisitos
 
@@ -98,8 +98,8 @@ A partir de aquí puedes crear los demás staff desde `/admin/usuarios`.
 
 ```bash
 # Clonar el repo (o tu fork)
-git clone https://github.com/<tu-org>/sintonia-fesi.git
-cd sintonia-fesi
+git clone https://github.com/<tu-org>/aura-fesi.git
+cd aura-fesi
 
 # Instalar dependencias
 npm install
@@ -112,7 +112,7 @@ npm install
 
 `vite.config.js`:
 ```js
-const BASE = process.env.VITE_BASE_PATH || '/sintonia-fesi/';
+const BASE = process.env.VITE_BASE_PATH || '/aura-fesi/';
 ```
 
 Para dominio personalizado o root, exporta `VITE_BASE_PATH=/`.
@@ -132,7 +132,7 @@ En GitHub → Settings → Pages → Source = `gh-pages` branch / root.
 
 ## Paso 6 — Verificar
 
-1. Visita la URL pública (ej. `https://<usuario>.github.io/sintonia-fesi/`).
+1. Visita la URL pública (ej. `https://<usuario>.github.io/aura-fesi/`).
 2. Test de smoke:
    - Hacer el test de 20 preguntas.
    - Llegar a resultado (verifica Gemini funciona).
@@ -175,7 +175,7 @@ Pegar en el SQL Editor de Supabase. Las nuevas waves van con `if not exists`/`do
 
 ## Dominio personalizado (opcional)
 
-1. En GitHub → repo → Settings → Pages → Custom domain → `sintonia.unam.mx`.
+1. En GitHub → repo → Settings → Pages → Custom domain → `aura.iztacala.unam.mx`.
 2. Añadir CNAME en tu DNS apuntando al GitHub Pages.
 3. Cambiar `VITE_BASE_PATH=/` antes del build:
    ```bash
