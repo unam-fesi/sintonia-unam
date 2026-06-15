@@ -238,7 +238,7 @@ export default function AdminSidebar({ ctx }) {
         .admin-side-v2 .admin-nav {
           display: flex;
           flex-direction: column;
-          gap: 2px;            /* Antes 6px — más compacto */
+          gap: 0;                 /* CERO espacio entre grupos */
           margin-top: 10px;
           padding-bottom: 12px;
           overflow-y: auto;
@@ -248,10 +248,8 @@ export default function AdminSidebar({ ctx }) {
         .nav-group {
           display: flex;
           flex-direction: column;
-          /* Cuando colapsado, el group entero NO debe contribuir altura extra */
+          margin: 0;              /* sin margin externo, los headers quedan pegados */
         }
-        .nav-group.open { margin-bottom: 4px; }
-        .nav-group:not(.open) { margin-bottom: 0; }
         .nav-group-flat { gap: 2px; }
         .nav-group-flat > a {
           display: flex; align-items: center; gap: 10px;
@@ -270,7 +268,8 @@ export default function AdminSidebar({ ctx }) {
         /* ===== Header del grupo colapsable ===== */
         .nav-group-head {
           display: flex; align-items: center; gap: 10px;
-          padding: 9px 12px;
+          padding: 10px 12px;
+          margin: 0;                /* sin margin para que los headers queden pegados */
           background: transparent;
           border: 0;
           color: var(--c-texto-soft);
@@ -302,32 +301,28 @@ export default function AdminSidebar({ ctx }) {
         .nav-group:not(.open) .nav-group-chev { transform: rotate(-90deg); }
 
         /* ===== Items del grupo (colapsable) ===== */
+        /* Usamos max-height (con un tope generoso) en lugar de grid-template-rows.
+           max-height permite contraer a 0 PIXELES sin dejar residuos. */
         .nav-group-items {
-          display: grid;
-          grid-template-rows: 1fr;
-          transition: grid-template-rows 0.3s cubic-bezier(.2,.7,.2,1),
-                      opacity 0.25s ease,
-                      padding 0.3s ease,
-                      margin 0.3s ease,
-                      border-color 0.3s ease;
-          padding-left: 12px;
-          border-left: 1.5px solid rgba(157,123,217,0.30);
-          margin-left: 14px;
-          margin-top: 2px;
+          max-height: 600px;
           overflow: hidden;
+          padding: 4px 0 4px 12px;
+          margin-left: 14px;
+          border-left: 1.5px solid rgba(157,123,217,0.30);
+          opacity: 1;
+          transition: max-height 0.32s cubic-bezier(.2,.7,.2,1),
+                      padding 0.32s cubic-bezier(.2,.7,.2,1),
+                      opacity 0.22s ease,
+                      border-color 0.22s ease;
         }
-        /* CRÍTICO: cuando colapsado, eliminamos todo padding/margin/border
-           para que no quede un hueco vacío entre grupos */
         .nav-group:not(.open) .nav-group-items {
-          grid-template-rows: 0fr;
+          max-height: 0;
+          padding-top: 0;
+          padding-bottom: 0;
           opacity: 0;
-          pointer-events: none;
-          padding: 0;
-          margin-top: 0;
-          margin-bottom: 0;
           border-left-color: transparent;
+          pointer-events: none;
         }
-        .nav-group-items > * { min-height: 0; overflow: hidden; }
         .nav-group-items > a {
           display: flex; align-items: center; gap: 10px;
           padding: 7px 12px;
