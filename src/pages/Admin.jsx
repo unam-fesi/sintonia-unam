@@ -6,6 +6,7 @@ import { checkSupabaseHealth } from '../services/supabaseService.js';
 import { checkOrientationHealth } from '../services/geminiService.js';
 import DimensionBubbles from '../components/DimensionBubbles.jsx';
 import ScrollReveal from '../components/ScrollReveal.jsx';
+import AdminSidebar from '../components/AdminSidebar.jsx';
 import { animateCounter } from '../utils/scrollReveal.js';
 import AdminProfile from './AdminProfile.jsx';
 import AdminContent from './AdminContent.jsx';
@@ -19,6 +20,8 @@ import AdminOperations from './AdminOperations.jsx';
 import AdminAdvanced from './AdminAdvanced.jsx';
 import AdminProgram from './AdminProgram.jsx';
 import AdminAnonymous from './AdminAnonymous.jsx';
+import AdminSecurity from './AdminSecurity.jsx';
+import AdminAICost from './AdminAICost.jsx';
 import TeachersKit from './TeachersKit.jsx';
 import ThemeToggle from '../components/ThemeToggle.jsx';
 import RoleGuard from '../components/RoleGuard.jsx';
@@ -78,6 +81,8 @@ export default function Admin() {
           <Route path="exportar"     element={<RoleGuard ctx={ctx} permission="view_aggregated"><AdminExport ctx={ctx} /></RoleGuard>} />
           <Route path="sistema"      element={<RoleGuard ctx={ctx} permission="manage_config"><AdminSystem ctx={ctx} /></RoleGuard>} />
           <Route path="operacion"    element={<RoleGuard ctx={ctx} permission="manage_security"><AdminOperations ctx={ctx} /></RoleGuard>} />
+          <Route path="seguridad"    element={<RoleGuard ctx={ctx} permission="manage_security"><AdminSecurity /></RoleGuard>} />
+          <Route path="costos-ai"    element={<RoleGuard ctx={ctx} permission="manage_security"><AdminAICost /></RoleGuard>} />
           <Route path="usuarios"     element={<RoleGuard ctx={ctx} permission="manage_users"><AdminUsers ctx={ctx} /></RoleGuard>} />
           <Route path="auditoria"    element={<RoleGuard ctx={ctx} permission="manage_users"><AdminAudit /></RoleGuard>} />
           <Route path="docentes"     element={<RoleGuard ctx={ctx} permission="view_teachers_kit"><TeachersKit /></RoleGuard>} />
@@ -218,75 +223,7 @@ export default function Admin() {
   );
 }
 
-function AdminSidebar({ ctx }) {
-  const r = ctx.admin.role;
-  const initials = (ctx.admin.full_name || ctx.admin.email)
-    .split(/\s+|@|\./)
-    .filter(Boolean)
-    .map(p => p[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
-
-  return (
-    <aside className="admin-side">
-      {/* Logo arriba del sidebar — identidad de marca persistente */}
-      <NavLink to="" end className="admin-brand" aria-label="Inicio del panel">
-        <img
-          src={`${import.meta.env.BASE_URL}Aura.png`}
-          alt="AURA"
-          className="admin-brand-logo"
-          loading="eager"
-          decoding="async"
-        />
-      </NavLink>
-
-      <NavLink to="perfil" className="profile-link" title="Editar mi perfil">
-        <span className="avatar" aria-hidden="true">{initials}</span>
-        <div className="profile-meta">
-          <span className="role-chip">{ROLE_LABEL[r] || r}</span>
-          <strong>{ctx.admin.full_name || ctx.admin.email}</strong>
-          <small>{ctx.admin.email}</small>
-        </div>
-        <span className="edit-icon" aria-hidden="true">⚙</span>
-      </NavLink>
-
-      <nav className="admin-nav">
-        {r !== 'docente' && <NavLink to="" end>📊 Dashboard</NavLink>}
-
-        {can(r, 'view_aggregated') && <NavLink to="estadisticas">📈 Estadísticas</NavLink>}
-        {can(r, 'view_aggregated') && <NavLink to="avanzado">🧠 Análisis avanzado</NavLink>}
-        {can(r, 'view_insights')   && <NavLink to="insights">✨ Pum-AI Insights</NavLink>}
-
-        {can(r, 'view_detail')     && <NavLink to="sesiones">🔍 Sesiones</NavLink>}
-        {can(r, 'view_detail')     && <NavLink to="anonimos">👥 Usuarios anónimos</NavLink>}
-        {can(r, 'view_detail')     && <NavLink to="buscar">🔎 Buscar por código</NavLink>}
-
-        {can(r, 'manage_content')  && <NavLink to="contenido">📝 Contenido</NavLink>}
-        {can(r, 'manage_content')  && <NavLink to="programa">🌱 Programa</NavLink>}
-
-        {can(r, 'view_aggregated') && <NavLink to="exportar">⬇ Exportar</NavLink>}
-
-        {can(r, 'manage_config')   && <NavLink to="sistema">⚙ Sistema</NavLink>}
-        {can(r, 'manage_security') && <NavLink to="operacion">🔒 Operación</NavLink>}
-
-        {can(r, 'manage_users')    && <NavLink to="usuarios">👥 Usuarios admin</NavLink>}
-        {can(r, 'manage_users')    && <NavLink to="auditoria">🧾 Auditoría</NavLink>}
-
-        {can(r, 'view_teachers_kit') && <NavLink to="docentes" end={r === 'docente'}>📚 Kit docente</NavLink>}
-
-        <NavLink to="perfil">👤 Mi perfil</NavLink>
-      </nav>
-
-      <ThemeToggle />
-
-      <button className="logout" onClick={async () => {
-        await signOut();
-        window.location.href = import.meta.env.BASE_URL + 'admin/login';
-      }}>↩ Cerrar sesión</button>
-    </aside>
-  );
-}
+// AdminSidebar v2 vive en src/components/AdminSidebar.jsx (importado arriba)
 
 // =============================================================
 // Dashboard

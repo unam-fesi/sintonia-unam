@@ -3,6 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import './styles/global.css';
+import { installChunkReloadHandler } from './utils/chunkReloadHandler.js';
+
+// Auto-reload si un chunk lazy falla (deploy nuevo con pestaña vieja).
+installChunkReloadHandler();
 
 // GitHub Pages SPA fallback: si /404.html nos rescata con ?p=, restauramos la URL.
 (function spaFallback() {
