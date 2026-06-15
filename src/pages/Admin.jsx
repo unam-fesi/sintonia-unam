@@ -98,16 +98,32 @@ export default function Admin() {
           grid-template-columns: 240px 1fr;
           min-height: calc(100vh - 80px);
         }
+        /* ===== Sidebar CLARO (paleta Atardecer abrazo) ===== */
         .admin-side {
-          background: var(--c-azul-800);
-          color: #fff;
+          background: linear-gradient(180deg, #FFFAF5 0%, #FFF0E8 100%);
+          color: var(--c-azul-800);
           padding: 24px 18px;
+          border-right: 1px solid var(--c-borde-soft);
+          position: relative;
         }
+        /* Halo lavanda detrás del logo para no perderse */
+        .admin-side::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 180px;
+          background:
+            radial-gradient(circle at 50% 30%, rgba(157,123,217,0.18), transparent 70%),
+            radial-gradient(circle at 50% 90%, rgba(255,184,156,0.10), transparent 60%);
+          pointer-events: none;
+        }
+        .admin-side > * { position: relative; z-index: 1; }
+
         .admin-brand {
           display: block;
           margin: -8px -6px 18px;
           padding: 10px 6px 14px;
-          border-bottom: 1px solid rgba(255,255,255,0.10);
+          border-bottom: 1px solid rgba(108,80,124,0.10);
           text-align: center;
           transition: opacity 0.2s;
         }
@@ -118,7 +134,9 @@ export default function Admin() {
           max-width: 180px;
           height: auto;
           margin: 0 auto;
-          filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35));
+          /* Sin filter de drop-shadow oscuro — el logo se ve limpio sobre fondo claro */
+          filter: drop-shadow(0 8px 18px rgba(108,80,124,0.18))
+                  drop-shadow(0 2px 6px rgba(108,80,124,0.10));
         }
         .admin-side .role-chip {
           display: inline-block;
@@ -139,12 +157,14 @@ export default function Admin() {
           padding: 10px;
           margin-bottom: 18px;
           border-radius: 12px;
-          background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.08);
-          color: #fff !important;
-          transition: background 0.2s;
+          background: rgba(255,255,255,0.7);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          border: 1px solid var(--c-borde-soft);
+          color: var(--c-azul-800) !important;
+          transition: background 0.2s, border-color 0.2s;
         }
-        .profile-link:hover { background: rgba(255,255,255,0.12); }
+        .profile-link:hover { background: rgba(255,255,255,0.9); border-color: rgba(157,123,217,0.30); }
         .profile-link .avatar {
           width: 42px; height: 42px;
           border-radius: 12px;
@@ -162,7 +182,7 @@ export default function Admin() {
         }
         .profile-link .profile-meta strong {
           font-size: 0.92rem;
-          color: #fff;
+          color: var(--c-azul-800);
           line-height: 1.2;
           white-space: nowrap;
           overflow: hidden;
@@ -170,48 +190,46 @@ export default function Admin() {
         }
         .profile-link .profile-meta small {
           font-size: 0.74rem;
-          color: rgba(255,255,255,0.65);
+          color: var(--c-gris);
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
         .profile-link .edit-icon {
-          opacity: 0.6;
-          font-size: 1.1rem;
+          opacity: 0.55;
+          color: var(--c-azul-800);
         }
         .profile-link.active {
-          background: var(--c-oro-600);
-          color: var(--c-azul-800) !important;
-        }
-        .profile-link.active .profile-meta strong,
-        .profile-link.active .profile-meta small { color: var(--c-azul-800); }
-        .profile-link.active .avatar {
-          background: var(--c-azul-800);
-          color: var(--c-oro-400);
+          background: var(--c-oro-100);
+          border-color: var(--c-oro-600);
         }
         .admin-nav { display: grid; gap: 4px; }
         .admin-nav a {
           padding: 10px 14px;
           border-radius: 10px;
-          color: rgba(255,255,255,0.85);
+          color: var(--c-azul-800);
           font-size: 0.94rem;
           font-weight: 600;
-          transition: background 0.2s;
+          transition: background 0.2s, transform 0.15s;
         }
-        .admin-nav a:hover { background: rgba(255,255,255,0.08); }
-        .admin-nav a.active { background: var(--c-oro-600); color: var(--c-azul-800); }
+        .admin-nav a:hover { background: rgba(157,123,217,0.10); transform: translateX(2px); }
+        .admin-nav a.active {
+          background: linear-gradient(135deg, var(--c-oro-600), var(--c-oro-400));
+          color: var(--c-azul-800);
+          box-shadow: 0 4px 12px rgba(201,162,39,0.25);
+        }
         .admin-side .logout {
           margin-top: 20px;
           background: transparent;
-          border: 1px solid rgba(255,255,255,0.2);
-          color: var(--c-oro-400);
+          border: 1px solid var(--c-coral-500);
+          color: var(--c-coral-700);
           width: 100%;
           padding: 10px;
           border-radius: 10px;
           font-weight: 700;
           cursor: pointer;
         }
-        .admin-side .logout:hover { background: rgba(255,255,255,0.05); }
+        .admin-side .logout:hover { background: var(--c-coral-600); border-color: var(--c-coral-500); color: #fff; }
         .admin-main { padding: 28px 32px 60px; background: var(--c-marfil); }
 
         @media (max-width: 880px) {

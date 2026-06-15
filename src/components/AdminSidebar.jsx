@@ -244,20 +244,21 @@ export default function AdminSidebar({ ctx }) {
           overflow-y: auto;
         }
 
-        /* ===== Grupos ===== */
+        /* ===== Grupos (tema CLARO Atardecer) ===== */
         .nav-group { display: flex; flex-direction: column; }
         .nav-group-flat { gap: 2px; }
         .nav-group-flat > a {
           display: flex; align-items: center; gap: 10px;
           padding: 8px 12px; border-radius: 10px;
-          color: rgba(255,255,255,0.85);
-          font-size: 0.92rem; font-weight: 500;
-          transition: background 0.15s ease, color 0.15s ease;
+          color: var(--c-azul-800);
+          font-size: 0.92rem; font-weight: 600;
+          transition: background 0.15s ease, transform 0.15s ease;
         }
-        .nav-group-flat > a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+        .nav-group-flat > a:hover { background: rgba(157,123,217,0.10); transform: translateX(2px); }
         .nav-group-flat > a.active {
           background: linear-gradient(135deg, var(--c-oro-600), var(--c-oro-400));
           color: var(--c-azul-800);
+          box-shadow: 0 4px 12px rgba(201,162,39,0.25);
         }
 
         /* ===== Header del grupo colapsable ===== */
@@ -266,7 +267,7 @@ export default function AdminSidebar({ ctx }) {
           padding: 8px 12px;
           background: transparent;
           border: 0;
-          color: rgba(255,255,255,0.55);
+          color: var(--c-gris);
           font-size: 0.74rem;
           font-weight: 700;
           text-transform: uppercase;
@@ -276,7 +277,10 @@ export default function AdminSidebar({ ctx }) {
           transition: color 0.15s ease, background 0.15s ease;
           text-align: left;
         }
-        .nav-group-head:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.04); }
+        .nav-group-head:hover {
+          color: var(--c-azul-800);
+          background: rgba(157,123,217,0.06);
+        }
         .nav-group-label { flex: 1; }
         .nav-group-chev {
           display: inline-flex;
@@ -291,7 +295,9 @@ export default function AdminSidebar({ ctx }) {
           display: grid;
           grid-template-rows: 1fr;
           transition: grid-template-rows 0.3s cubic-bezier(.2,.7,.2,1), opacity 0.25s ease;
-          padding-left: 8px;
+          padding-left: 12px;
+          border-left: 1px solid var(--c-borde-soft);
+          margin-left: 14px;
         }
         .nav-group:not(.open) .nav-group-items {
           grid-template-rows: 0fr;
@@ -304,15 +310,21 @@ export default function AdminSidebar({ ctx }) {
           padding: 7px 12px;
           margin: 1px 0;
           border-radius: 8px;
-          color: rgba(255,255,255,0.78);
+          color: var(--c-texto-soft);
           font-size: 0.88rem;
           font-weight: 500;
           transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
         }
-        .nav-group-items > a:hover { background: rgba(255,255,255,0.06); color: #fff; transform: translateX(2px); }
+        .nav-group-items > a:hover {
+          background: rgba(157,123,217,0.10);
+          color: var(--c-azul-800);
+          transform: translateX(3px);
+        }
         .nav-group-items > a.active {
-          background: rgba(201,162,39,0.18);
-          color: var(--c-oro-400);
+          background: var(--c-oro-100);
+          color: var(--c-oro-700);
+          border-left: 3px solid var(--c-oro-600);
+          padding-left: 9px;
         }
 
         /* ===== Logout con icono ===== */
@@ -322,10 +334,10 @@ export default function AdminSidebar({ ctx }) {
           width: 100%;
           padding: 10px 12px;
           margin-top: 10px;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.10);
+          background: transparent;
+          border: 1px solid var(--c-coral-500);
           border-radius: 10px;
-          color: rgba(255,255,255,0.85);
+          color: var(--c-coral-700);
           font-size: 0.88rem;
           font-weight: 600;
           cursor: pointer;
@@ -337,9 +349,12 @@ export default function AdminSidebar({ ctx }) {
           color: #fff;
         }
 
-        .nav-group-footer { margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .nav-group-footer {
+          margin-top: 6px; padding-top: 6px;
+          border-top: 1px solid var(--c-borde-soft);
+        }
 
-        /* ===== Mobile (drawer en lugar de side) ===== */
+        /* ===== Mobile ===== */
         @media (max-width: 880px) {
           .admin-side-v2 { padding: 16px; }
           .nav-group-head { font-size: 0.72rem; }
