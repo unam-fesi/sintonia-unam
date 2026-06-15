@@ -6,24 +6,33 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-const url = import.meta.env.VITE_SUPABASE_URL;
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const isSupabaseConfigured = Boolean(url && anonKey);
-
-export const supabase = isSupabaseConfigured
-  ? createClient(url, anonKey, {
-      auth: {
-        persistSession: true,        // Necesario para mantener login admin
-        autoRefreshToken: true,
-        storageKey: 'aura.auth', // Aislado de otros apps
-      },
-    })
-  : null;
-
-if (!isSupabaseConfigured && import.meta.env.DEV) {
-  // eslint-disable-next-line no-console
-  console.warn(
-    '[AURA] Falta configurar VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY en .env.local'
-  );
+// Helper: lee el código anónimo de sessionStorage en cada momento
+function getAnonCode() {
+  try {
+    const raw = sessionStorage.getItem('aura.student');
+    if (raw) return (JSON.parse(raw).code || '');
+    return sessionStorage.getItem('aura.anon_code') || '';
+  } catch { return ''; }
 }
+
+export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: {
+    storageKey: 'aura.auth',
+    persistSession: true,
+    autoRefreshToken: true,
+  },
+  global: {
+    // Hook que ejecuta antes de CADA request HTTP a Supabase
+    fetch: (url, opts = {}) => {
+      const code = getAnonCode();
+      const headers = new Headers(opts.headers || {});
+      if (code) headers.set('X-Anon-Code', code);
+      return fetch(url, { ...opts, headers });
+    },
+  },
+});
+
+export const isSupabaseConfigured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
