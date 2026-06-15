@@ -4,6 +4,8 @@ import { supabase } from '../config/supabaseClient.js';
 import SafetyNotice from '../components/SafetyNotice.jsx';
 import EmotionalAvatar from '../components/EmotionalAvatar.jsx';
 import ScrollReveal from '../components/ScrollReveal.jsx';
+import Icon from '../components/Icon.jsx';
+import Counter from '../components/Counter.jsx';
 import { setStudent, clearStudent, getStudent } from '../hooks/useStudent.js';
 
 // Extrae el mensaje de error real cuando una Edge Function devuelve non-2xx.
@@ -324,21 +326,94 @@ function HistoryView({ data, code, onLogout }) {
           </header>
         </ScrollReveal>
 
+        {/* ===== Hero personal con avatar emocional + KPIs ===== */}
         <ScrollReveal variant="zoomIn" delay={0.1}>
         <div className="avatar-row mt-3">
           <EmotionalAvatar code={code} />
-          <div className="quick-actions">
-            <Link to="/check-in" className="btn btn-primary">📝 Check-in semanal</Link>
-            <Link to="/diario" className="btn btn-gold">📔 Diario</Link>
-            <Link to="/companion" className="btn btn-coral">🤝 Hablar con Pum-AI</Link>
-            <Link to="/ruta" className="btn btn-ghost">🛤 Mi ruta</Link>
-            <Link to="/biblioteca" className="btn btn-ghost">📚 Biblioteca</Link>
-            <Link to="/aventura" className="btn btn-ghost">🗺 Aventura</Link>
-            <Link to="/buddy" className="btn btn-ghost">🫂 Buddy</Link>
-            <Link to="/arboles" className="btn btn-ghost">🌳 Mis árboles</Link>
-            <Link to="/calendario" className="btn btn-ghost">📅 Calendario</Link>
+          <div className="quick-stats">
+            <div className="qs-card qs-peach">
+              <Counter to={data.sessions.length} className="qs-num" />
+              <span className="qs-lbl">evaluaciones</span>
+            </div>
+            <div className="qs-card qs-mint">
+              <Counter to={data.checkins.length} className="qs-num" />
+              <span className="qs-lbl">check-ins</span>
+            </div>
+            <div className="qs-card qs-lavanda">
+              <Counter to={data.journal.length} className="qs-num" />
+              <span className="qs-lbl">entradas diario</span>
+            </div>
+            <div className="qs-card qs-oro">
+              <Counter to={data.achievements.length} className="qs-num" />
+              <span className="qs-lbl">logros</span>
+            </div>
           </div>
         </div>
+        </ScrollReveal>
+
+        {/* ===== Bento grid de acciones — 3 niveles de jerarquía ===== */}
+        <ScrollReveal variant="slideUp" delay={0.15}>
+          <div className="bento-section mt-4">
+            <div className="bento-cat">Tu cuidado diario</div>
+            <div className="bento-grid-daily">
+              <Link to="/check-in" className="bento-card bento-lg bento-peach">
+                <div className="bento-icon"><Icon name="check-list" size={26} /></div>
+                <div className="bento-title">Check-in semanal</div>
+                <div className="bento-desc">30 segundos. Mide tu ánimo y estrés esta semana.</div>
+                <div className="bento-cta">Hacer ahora <Icon name="arrow-right" size={14} /></div>
+              </Link>
+              <Link to="/diario" className="bento-card bento-lg bento-coral">
+                <div className="bento-icon"><Icon name="notebook" size={26} /></div>
+                <div className="bento-title">Diario emocional</div>
+                <div className="bento-desc">Una línea sobre cómo te sientes hoy.</div>
+                <div className="bento-cta">Escribir <Icon name="arrow-right" size={14} /></div>
+              </Link>
+            </div>
+            <Link to="/companion" className="bento-card bento-hero bento-lavanda mt-3">
+              <div className="bento-icon-lg"><Icon name="message-heart" size={36} /></div>
+              <div style={{flex:1}}>
+                <div className="bento-title">Hablar con Pum-AI</div>
+                <div className="bento-desc">Te escucha sin juzgar. No es terapia, pero ayuda a poner en palabras lo que sientes.</div>
+              </div>
+              <div className="bento-cta-pill">Iniciar conversación <Icon name="arrow-right" size={14} /></div>
+            </Link>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal variant="slideUp" delay={0.2}>
+          <div className="bento-section mt-4">
+            <div className="bento-cat">Tu proceso</div>
+            <div className="bento-grid-md">
+              <Link to="/ruta" className="bento-card bento-md bento-durazno">
+                <div className="bento-icon"><Icon name="route" size={22} /></div>
+                <div className="bento-title-sm">Mi ruta</div>
+                <div className="bento-desc-sm">Plan de bienestar 7 días</div>
+              </Link>
+              <Link to="/arboles" className="bento-card bento-md bento-mint">
+                <div className="bento-icon"><Icon name="tree" size={22} /></div>
+                <div className="bento-title-sm">Mis árboles</div>
+                <div className="bento-desc-sm">Adopta y cuida</div>
+              </Link>
+              <Link to="/mi-historia#logros" className="bento-card bento-md bento-oro">
+                <div className="bento-icon"><Icon name="trophy" size={22} /></div>
+                <div className="bento-title-sm">Logros</div>
+                <div className="bento-desc-sm">{data.achievements.length} desbloqueados</div>
+              </Link>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal variant="slideUp" delay={0.25}>
+          <div className="bento-section mt-4">
+            <div className="bento-cat">Explora</div>
+            <div className="bento-grid-sm">
+              <Link to="/biblioteca" className="bento-chip"><Icon name="books" size={18} /><span>Biblioteca</span></Link>
+              <Link to="/mapa" className="bento-chip"><Icon name="map-pin" size={18} /><span>Mapa</span></Link>
+              <Link to="/buddy" className="bento-chip"><Icon name="friends" size={18} /><span>Buddy</span></Link>
+              <Link to="/calendario" className="bento-chip"><Icon name="calendar" size={18} /><span>Eventos</span></Link>
+              <Link to="/aventura" className="bento-chip"><Icon name="compass" size={18} /><span>Aventura</span></Link>
+            </div>
+          </div>
         </ScrollReveal>
 
         <div className="hist-grid mt-3">
@@ -414,10 +489,132 @@ function HistoryView({ data, code, onLogout }) {
           gap: 18px;
           align-items: center;
         }
-        .quick-actions {
-          display: flex; flex-wrap: wrap; gap: 8px;
-        }
         @media (max-width: 720px) { .avatar-row { grid-template-columns: 1fr; } }
+
+        /* ===== KPI cards arriba ===== */
+        .quick-stats {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 10px;
+        }
+        @media (max-width: 720px) { .quick-stats { grid-template-columns: repeat(2, 1fr); } }
+        .qs-card {
+          padding: 12px 16px;
+          border-radius: 14px;
+          text-align: center;
+          border: 1px solid;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .qs-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(108,80,124,0.10); }
+        .qs-num { display: block; font-family: var(--ff-serif); font-size: 1.7rem; font-weight: 800; }
+        .qs-lbl { display: block; font-size: 0.72rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+        .qs-peach   { background: var(--c-peach-100);   border-color: rgba(255,154,123,0.35); }
+        .qs-peach   .qs-num, .qs-peach   .qs-lbl { color: var(--c-peach-700); }
+        .qs-mint    { background: var(--c-mint-100);    border-color: rgba(125,196,174,0.40); }
+        .qs-mint    .qs-num, .qs-mint    .qs-lbl { color: var(--c-mint-700); }
+        .qs-lavanda { background: var(--c-lavanda-100); border-color: rgba(157,123,217,0.30); }
+        .qs-lavanda .qs-num, .qs-lavanda .qs-lbl { color: var(--c-lavanda-700); }
+        .qs-oro     { background: var(--c-oro-100);     border-color: rgba(201,162,39,0.30); }
+        .qs-oro     .qs-num, .qs-oro     .qs-lbl { color: var(--c-oro-700); }
+
+        /* ===== Bento grid ===== */
+        .bento-section { }
+        .bento-cat {
+          font-size: 0.74rem;
+          font-weight: 700;
+          color: var(--c-gris);
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          margin-bottom: 10px;
+          padding-left: 4px;
+        }
+        .bento-card {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          padding: 18px 20px;
+          border-radius: 16px;
+          background: rgba(255,255,255,0.94);
+          border: 1px solid var(--c-borde-soft);
+          text-decoration: none;
+          color: var(--c-texto);
+          transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s ease, border-color 0.25s ease;
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+        }
+        .bento-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 14px 30px rgba(108,80,124,0.14);
+        }
+        .bento-icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 4px; }
+        .bento-icon-lg { width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; flex-shrink: 0; }
+        .bento-title { font-family: var(--ff-serif); font-size: 1.18rem; font-weight: 700; }
+        .bento-title-sm { font-family: var(--ff-serif); font-size: 1rem; font-weight: 700; margin-top: 2px; }
+        .bento-desc { font-size: 0.92rem; color: var(--c-texto-soft); line-height: 1.45; }
+        .bento-desc-sm { font-size: 0.78rem; color: var(--c-texto-soft); }
+        .bento-cta {
+          font-size: 0.85rem; font-weight: 700; margin-top: 6px;
+          display: inline-flex; align-items: center; gap: 6px;
+        }
+        .bento-cta-pill {
+          background: var(--c-azul-800); color: white;
+          padding: 10px 18px; border-radius: 999px;
+          font-size: 0.86rem; font-weight: 700;
+          display: inline-flex; align-items: center; gap: 6px;
+          white-space: nowrap;
+          transition: background 0.2s ease;
+        }
+        .bento-card:hover .bento-cta-pill { background: var(--c-azul-900); }
+
+        .bento-grid-daily { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        @media (max-width: 720px) { .bento-grid-daily { grid-template-columns: 1fr; } }
+        .bento-grid-md { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        @media (max-width: 540px) { .bento-grid-md { grid-template-columns: 1fr; } }
+        .bento-grid-sm {
+          display: grid; gap: 8px;
+          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        }
+
+        /* Hero card del companion — destacada */
+        .bento-hero {
+          display: flex !important;
+          flex-direction: row !important;
+          gap: 18px;
+          align-items: center;
+          background: linear-gradient(135deg, rgba(157,123,217,0.10), rgba(255,184,156,0.10));
+          border: 1px solid rgba(157,123,217,0.30);
+        }
+        @media (max-width: 640px) {
+          .bento-hero { flex-direction: column !important; align-items: flex-start; }
+          .bento-hero .bento-cta-pill { width: 100%; justify-content: center; }
+        }
+
+        /* Variants de color */
+        .bento-peach   .bento-icon { background: var(--c-peach-100);   color: var(--c-peach-700); }
+        .bento-peach:hover { border-color: var(--c-peach-500); }
+        .bento-coral   .bento-icon { background: var(--c-coral-100);   color: var(--c-coral-700); }
+        .bento-coral:hover { border-color: var(--c-coral-500); }
+        .bento-lavanda .bento-icon-lg { background: var(--c-lavanda-100); color: var(--c-lavanda-700); }
+        .bento-durazno .bento-icon { background: var(--c-durazno-100); color: var(--c-durazno-700); }
+        .bento-mint    .bento-icon { background: var(--c-mint-100);    color: var(--c-mint-700); }
+        .bento-oro     .bento-icon { background: var(--c-oro-100);     color: var(--c-oro-700); }
+
+        /* Chips de "explora" */
+        .bento-chip {
+          display: flex; align-items: center; gap: 10px;
+          padding: 12px 16px; border-radius: 12px;
+          background: rgba(255,255,255,0.88);
+          border: 1px solid var(--c-borde-soft);
+          text-decoration: none; color: var(--c-azul-800);
+          font-weight: 600; font-size: 0.92rem;
+          transition: all 0.2s ease;
+        }
+        .bento-chip:hover {
+          transform: translateY(-2px);
+          background: rgba(157,123,217,0.08);
+          border-color: rgba(157,123,217,0.30);
+        }
+
         .hist-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
