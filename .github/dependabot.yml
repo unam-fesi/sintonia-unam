@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    # vite 7+ y esbuild 0.28+ se evalúan manualmente — el bump rompe el build
+    # actual (transform de destructuring) hasta que actualicemos browserslist
+    # o subamos a vite 8 + Node 20.19+.
+    ignore:
+      - dependency-name: "vite"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "esbuild"
+        update-types: ["version-update:semver-major"]
