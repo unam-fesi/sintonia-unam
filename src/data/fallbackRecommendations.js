@@ -2,7 +2,7 @@
 // AURA — Catálogo base de recomendaciones
 // Estructura: { dimension, level, title, description }
 // level: 'bajo' | 'moderado' | 'prioritario'
-// Se utilizan si no hay conexión con Supabase / Gemini.
+// Se utilizan si no hay conexión con Supabase / Pum-AI.
 // =============================================================
 
 export const FALLBACK_RECOMMENDATIONS = [

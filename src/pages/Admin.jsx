@@ -3,7 +3,7 @@ import { useNavigate, NavLink, Routes, Route, Navigate } from 'react-router-dom'
 import { supabase, isSupabaseConfigured } from '../config/supabaseClient.js';
 import { getAdminContext, signOut, can, ROLE_LABEL } from '../services/authService.js';
 import { checkSupabaseHealth } from '../services/supabaseService.js';
-import { checkOrientationHealth } from '../services/geminiService.js';
+import { checkOrientationHealth } from '../services/pumaiService.js';
 import DimensionBubbles from '../components/DimensionBubbles.jsx';
 import ScrollReveal from '../components/ScrollReveal.jsx';
 import AdminSidebar from '../components/AdminSidebar.jsx';
@@ -260,7 +260,7 @@ function AdminDashboard({ ctx }) {
   useEffect(() => {
     (async () => {
       const [s, g] = await Promise.all([checkSupabaseHealth(), checkOrientationHealth()]);
-      setConn({ supabase: s, gemini: g });
+      setConn({ supabase: s, pumai: g });
     })();
   }, []);
 
@@ -331,7 +331,7 @@ function AdminDashboard({ ctx }) {
         <div className="health">
           <ConnChip label="Backend" ok={conn.supabase?.ok} />
           <ConnChip label="BD"      ok={conn.supabase?.ok} />
-          <ConnChip label="Pum-AI"  ok={conn.gemini?.ok} />
+          <ConnChip label="Pum-AI"  ok={conn.pumai?.ok} />
         </div>
         <style>{`
           .dashboard-welcome {

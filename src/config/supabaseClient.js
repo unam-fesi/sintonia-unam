@@ -1,7 +1,7 @@
 // =============================================================
 // AURA — Cliente Supabase para el frontend
 // Sólo se usan claves PÚBLICAS (anon / publishable).
-// Las claves service_role y de Gemini viven en Edge Functions.
+// Las claves service_role y de Pum-AI viven en Edge Functions.
 // =============================================================
 
 import { createClient } from '@supabase/supabase-js';

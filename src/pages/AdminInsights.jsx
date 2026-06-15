@@ -116,7 +116,7 @@ export default function AdminInsights() {
         <div className="kpi-grid mt-2">
           <Kpi label="Llamadas" value={totalCalls} />
           <Kpi label="Costo USD" value={'$' + totalCost.toFixed(4)} accent="gold" />
-          <Kpi label="Modelo" value={costs[0]?.model || 'gemini-2.5-flash'} />
+          <Kpi label="Modelo" value={costs[0]?.model || 'pum-ai-flash'} />
         </div>
         {costs.length > 0 && (
           <div className="table-wrap mt-2">
@@ -137,7 +137,7 @@ export default function AdminInsights() {
             </table>
           </div>
         )}
-        <p className="note mt-2">Precios estimados: gemini-2.5-flash ≈ $0.075/1M tokens entrada, $0.30/1M salida (USD).</p>
+        <p className="note mt-2">Precios estimados: Pum-AI ≈ $0.075/1M tokens entrada, $0.30/1M salida (USD).</p>
       </section>
 
       <style>{`

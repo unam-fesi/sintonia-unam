@@ -2,14 +2,14 @@
 // AURA — Orquesta el flujo de evaluación
 // 1. Calcula resultado local (transparente).
 // 2. Persiste sesión + respuestas (anónimas) en Supabase.
-// 3. Pide a la Edge Function una orientación amigable con Gemini.
+// 3. Pide a la Edge Function una orientación amigable con Pum-AI.
 // 4. Devuelve un objeto consolidado para la UI.
 // =============================================================
 
 import { computeResult } from '../utils/scoring.js';
 import { generateAnonymousCode } from '../utils/anonymousCode.js';
 import { saveSession, saveAnswers, fetchRecommendations } from './supabaseService.js';
-import { generateOrientation } from './geminiService.js';
+import { generateOrientation } from './pumaiService.js';
 import { TEST_VERSION } from '../utils/constants.js';
 
 export async function submitAssessment({ questions, answers, anonymousCode }) {
@@ -38,7 +38,7 @@ export async function submitAssessment({ questions, answers, anonymousCode }) {
     await saveAnswers(sessionId, rows);
   }
 
-  // 4. Orientación Gemini (con catálogo controlado)
+  // 4. Orientación Pum-AI (con catálogo controlado)
   const recommendations = await fetchRecommendations();
   const aiPayload = await generateOrientation({
     session_id: sessionId,

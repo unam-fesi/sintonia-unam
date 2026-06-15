@@ -1,7 +1,7 @@
 // =============================================================
 // AURA — /admin/costos-ai
-// Dashboard de uso y costos de Pum-AI (Gemini). Lee de
-// gemini_usage que ya tiene los tokens y el estimado por llamada.
+// Dashboard de uso y costos de Pum-AI. Lee de
+// pumai_usage que ya tiene los tokens y el estimado por llamada.
 // =============================================================
 
 import { useEffect, useState } from 'react';
@@ -34,7 +34,7 @@ export default function AdminAICost() {
     const hours = range === '24h' ? 24 : range === '7d' ? 168 : 720;
     const since = new Date(Date.now() - hours * 3600 * 1000).toISOString();
     const { data: rows } = await supabase
-      .from('gemini_usage')
+      .from('pumai_usage')
       .select('feature, tokens_in, tokens_out, cost_usd_est, ok, created_at')
       .gte('created_at', since)
       .limit(5000);
@@ -81,7 +81,7 @@ export default function AdminAICost() {
           <h1 className="mt-2">Costos y uso de IA</h1>
           <p className="lede">
             Cuánto se ha usado Pum-AI por feature y día. Cuotas activas: ver
-            sección Operación. Los datos se calculan client-side desde <code>gemini_usage</code>.
+            sección Operación. Los datos se calculan client-side desde <code>pumai_usage</code>.
           </p>
         </div>
         <div>

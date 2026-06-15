@@ -44,7 +44,7 @@ export default function AdminStats() {
   if (data.loading) return <div className="spinner" style={{margin:'40px auto'}} />;
 
   const pumaiSuccessRate = data.pumai?.total_calls
-    ? Math.round((data.pumai.gemini_count / data.pumai.total_calls) * 100)
+    ? Math.round((data.pumai.pumai_count / data.pumai.total_calls) * 100)
     : null;
 
   return (
@@ -118,7 +118,7 @@ export default function AdminStats() {
         <h2>Métricas de Pum-AI</h2>
         <div className="kpi-grid">
           <Kpi label="Llamadas totales" value={data.pumai?.total_calls ?? 0} />
-          <Kpi label="Pum-AI exitosa" value={data.pumai?.gemini_count ?? 0} accent="sage" />
+          <Kpi label="Pum-AI exitosa" value={data.pumai?.pumai_count ?? 0} accent="sage" />
           <Kpi label="Fallback local" value={data.pumai?.fallback_count ?? 0} accent="coral" />
           <Kpi label="Tasa de éxito" value={pumaiSuccessRate != null ? pumaiSuccessRate + '%' : '—'} accent="gold" />
         </div>

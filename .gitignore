@@ -1,11 +1,39 @@
+# Build / deps
 node_modules/
 dist/
+
+# Env
 .env
 .env.local
 .env.*.local
-.supabase/
+.env.example
+
+# OS
 .DS_Store
+
+# Editores
 .vscode/
 .idea/
-*.log
+
+# Supabase CLI local
+.supabase/
 supabase/
+
+# Logs
+*.log
+
+# Documentación interna y snapshots — no se publican
+docs/
+docs/**
+
+# Snapshots/backups de edge functions y SQL ad-hoc en raíz
+/anon-auth.ts
+/buddy-ai-reply.ts
+/*-edge.ts
+/*.sql
+
+# Notas privadas, scripts personales
+NOTES.md
+TODO.md
+SCRATCH.md
+/scripts-local/
